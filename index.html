@@ -1,69 +1,1598 @@
-# ✅ צ'קליסט בדיקת איכות - אתר טיול
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>טיול סלובקיה ופולין 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800;900&display=swap');
 
-להריץ על כל קובץ index.html לפני מסירה, ואחרי כל עדכון משמעותי.
+  :root {
+    --sk: #2D6A4F;
+    --pl: #C0392B;
+    --accent: #F4A261;
+    --bg: #0F1923;
+    --card: #1A2635;
+    --text: #F0EDE8;
+    --sub: #8A9BAD;
+    --border: #2A3A4A;
+    --time: #F4A261;
+    --rest-bg: #F7F4EF;
+    --rest-card: #FFFFFF;
+    --rest-text: #1A1A1A;
+    --rest-sub: #666;
+    --rest-border: #E8E0D5;
+  }
 
----
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-## 1. שלמות הקובץ (הכי חשוב!)
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
 
-- [ ] הורדתי את הגרסה **האחרונה בפועל** מ-GitHub לפני שהתחלתי לערוך (לא הנחתי שהיא מעודכנת)
-- [ ] בדקתי שכל התוספות מהשיחות הקודמות עדיין קיימות בקובץ (חיפוש מהיר של מילות מפתח מוכרות)
-- [ ] אין כפילויות תוכן (אותה מסעדה/פעילות מופיעה פעמיים)
+  /* ===== TAB NAV ===== */
+  .tab-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #0A1520;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+  }
 
----
+  .tab-btn {
+    flex: 1;
+    padding: 12px 4px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--sub);
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
 
-## 2. תקינות טכנית
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
 
-- [ ] HTML תקין - אין תגיות פתוחות (בדיקת parser)
-- [ ] אין תווים משפה זרה שהוכנסו בטעות (לדוגמה ط ערבית במקום ט עברית)
-- [ ] כל הקישורים תקינים - אין `href=""` ריק, אין קישורים שבורים
-- [ ] כל כפתורי הניווט (וויז) מכוונים למקום הנכון
+  /* ===== PAGES ===== */
+  .page { display: none; padding-bottom: 40px; }
+  .page.active { display: block; }
 
----
+  /* ===== TRIP PAGE ===== */
+  .hero {
+    background: linear-gradient(160deg, #1B3A5C 0%, #0F1923 100%);
+    padding: 28px 20px 24px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
 
-## 3. סדר כרונולוגי
+  .hero-flag { font-size: 26px; letter-spacing: 6px; margin-bottom: 8px; }
 
-- [ ] בכל יום, השעות מסודרות נכון מהמוקדמת למאוחרת
-- [ ] אופציות חלופיות לאותה שעה (למשל שתי אטרקציות ביניהן בוחרים) - זה **תקין**, לא באג
-- [ ] אחרי כל הוספת פעילות חדשה - לבדוק שהיא לא שברה את הסדר של פעילויות סמוכות
+  .hero h1 {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+  }
 
----
+  .hero p { font-size: 13px; color: var(--sub); margin-top: 5px; }
 
-## 4. תוכן - לכל פעילות
+  .hero-tags {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
 
-- [ ] זמן נסיעה מצוין מהנקודה הקודמת (לא רק "X דקות" בלי לציין מאיפה)
-- [ ] שעות פתיחה + שעת כניסה אחרונה
-- [ ] מחיר מדויק ממקור רשמי - **או** תיוג מפורש "הערכה - לא מאומת"
-- [ ] מגבלת גיל/גובה/משקל רלוונטית להרכב המשפחה בפועל
-- [ ] הערת נגישות לעגלה/מנשא אם יש תינוק בקבוצה
+  .tag {
+    background: rgba(244,162,97,0.15);
+    border: 1px solid rgba(244,162,97,0.3);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
 
----
+  .info-bar {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
 
-## 5. מסעדות
+  .info-item { display: flex; flex-direction: column; gap: 2px; }
 
-- [ ] דירוג ומספר ביקורות מצוינים כשיש מקור אמיתי
-- [ ] אזהרה אם מקום נמצא ב"מלכודת תיירים" (מדרחוב מרכזי, ליד רכבל)
-- [ ] כתובת מדויקת, לא רק שם עיר
+  .info-label {
+    font-size: 10px;
+    color: var(--sub);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
 
----
+  .info-value { font-size: 12px; font-weight: 600; color: var(--text); }
+  .info-link { font-size: 12px; font-weight: 600; color: #4EA8DE; text-decoration: none; }
 
-## 6. יום גשום
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 20px 10px;
+  }
 
-- [ ] יש תוכנית גיבוי מלאה, לא רק הערה כללית של "יש אופציות"
-- [ ] קישור למזג אוויר מקומי (תחנה של מקום הלינה אם קיימת) + כללי לכל אזור בטיול
+  .section-flag { font-size: 18px; }
 
----
+  .section-title {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--sub);
+  }
 
-## 7. ביקורת אובייקטיבית - לפני מסירה
+  .section-line { flex: 1; height: 1px; background: var(--border); }
 
-- [ ] יש יום עמוס מדי? (יותר מ-4-5 פעילויות משמעותיות)
-- [ ] יש זיג-זג גיאוגרפי מיותר (נסיעה הלוך ושוב לאותו כיוון)?
-- [ ] יש התנגשות זמנים בין שתי פעילויות?
-- [ ] יש איזון בין ימי אקשן לימי מנוחה, בהתחשב בגיל הילדים הכי קטן בקבוצה?
+  .day-card {
+    margin: 0 16px 12px;
+    background: var(--card);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
 
----
+  .day-header {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
 
-## 8. לפני שמסיימים
+  .day-header.sk { background: rgba(45,106,79,0.2); }
+  .day-header.pl { background: rgba(192,57,43,0.2); }
 
-- [ ] מסרתי קובץ index.html מוכן להעלאה - לא רשימת הוראות
-- [ ] הזכרתי לבני להעלות את הגרסה הזו ל-GitHub לפני הבקשה הבאה
+  .day-num { font-size: 11px; font-weight: 800; color: var(--sub); text-transform: uppercase; letter-spacing: 1px; }
+  .day-date { font-size: 16px; font-weight: 900; color: var(--text); margin-top: 1px; }
+  .day-title { font-size: 12px; font-weight: 600; color: var(--accent); text-align: right; max-width: 160px; }
+
+  .activity {
+    display: flex;
+    gap: 12px;
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(42,58,74,0.6);
+    align-items: flex-start;
+  }
+
+  .activity:last-child { border-bottom: none; }
+
+  .act-time {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--time);
+    white-space: nowrap;
+    min-width: 42px;
+    padding-top: 1px;
+  }
+
+  .act-content { flex: 1; }
+  .act-name { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .act-note { font-size: 11px; color: var(--sub); margin-top: 2px; }
+  .act-note a { color: #4EA8DE; text-decoration: none; }
+
+  .act-nav {
+    background: rgba(78,168,222,0.15);
+    border: 1px solid rgba(78,168,222,0.3);
+    color: #4EA8DE;
+    border-radius: 16px;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'Heebo', sans-serif;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  .act-nav-gmap {
+    background: rgba(82,183,136,0.15);
+    border: 1px solid rgba(82,183,136,0.3);
+    color: #52B788;
+    border-radius: 16px;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'Heebo', sans-serif;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  .nav-btns {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .act-optional {
+    background: rgba(244,162,97,0.1);
+    border: 1px solid rgba(244,162,97,0.2);
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-left: 6px;
+  }
+
+  .notes-card {
+    margin: 0 16px 12px;
+    background: rgba(244,162,97,0.08);
+    border: 1px solid rgba(244,162,97,0.2);
+    border-radius: 14px;
+    padding: 14px 16px;
+  }
+
+  .notes-title {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .note-item {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 12px;
+    color: var(--sub);
+    line-height: 1.4;
+    align-items: flex-start;
+  }
+
+  .note-item:last-child { margin-bottom: 0; }
+  .note-emoji { flex-shrink: 0; }
+  .note-item a { color: #4EA8DE; text-decoration: none; }
+
+  /* ===== RESTAURANTS PAGE ===== */
+  #page-restaurants {
+    background: var(--rest-bg);
+    color: var(--rest-text);
+  }
+
+  .rest-header {
+    text-align: center;
+    padding: 24px 20px 16px;
+    background: var(--rest-bg);
+  }
+
+  .rest-header h2 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--rest-text);
+  }
+
+  .rest-header p { font-size: 13px; color: var(--rest-sub); margin-top: 4px; }
+
+  .country-block { margin: 0 16px 20px; }
+
+  .country-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    font-weight: 800;
+    font-size: 14px;
+    color: white;
+  }
+
+  .country-header.sk { background: #E8572A; }
+  .country-header.pl { background: #C0392B; }
+  .country-header .flag { font-size: 18px; }
+
+  .restaurant-card {
+    background: var(--rest-card);
+    border: 1px solid var(--rest-border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .card-left { display: flex; align-items: center; gap: 10px; flex: 1; }
+  .emoji { font-size: 20px; width: 28px; text-align: center; flex-shrink: 0; }
+  .card-name { font-size: 14px; font-weight: 600; color: var(--rest-text); line-height: 1.3; }
+  .card-type { font-size: 11px; color: var(--rest-sub); margin-top: 2px; }
+
+  .nav-btn {
+    background: #1A73E8;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .rest-note {
+    margin: 0 16px 16px;
+    background: #FFF8E7;
+    border: 1px solid #F0D58C;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #7A6200;
+    text-align: center;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 11px;
+    color: var(--sub);
+    background: var(--bg);
+  }
+</style>
+</head>
+<body>
+
+<!-- TAB NAV -->
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('trip')">🗓️ טיול</button>
+  <button class="tab-btn" onclick="switchTab('restaurants')">🍽️ אוכל</button>
+  <button class="tab-btn" onclick="switchTab('attractions')">🎯 אטרקציות</button>
+  <button class="tab-btn" onclick="switchTab('shopping')">🛒 קניות</button>
+  <button class="tab-btn" onclick="switchTab('rain')">🌧️ גשם</button>
+</nav>
+
+<!-- ===== TRIP PAGE ===== -->
+<div id="page-trip" class="page active">
+
+  <div class="hero">
+    <div class="hero-flag">🇸🇰 🇵🇱</div>
+    <h1>סלובקיה ופולין 2026</h1>
+    <p>24 אוגוסט – 2 ספטמבר • 9 אנשים • 2 רכבים</p>
+    <div class="hero-tags">
+      <span class="tag">✈️ קרקוב</span>
+      <span class="tag">🏔️ Jasná</span>
+      <span class="tag">🎢 Energylandia</span>
+      <span class="tag">🛍️ קניות בקרקוב</span>
+    </div>
+  </div>
+
+  <div class="info-bar">
+    <div class="info-item">
+      <span class="info-label">רכב</span>
+      <span class="info-value">OneRent × 2 – קרקוב</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">לינה סלובקיה</span>
+      <span class="info-value"><a href="http://www.chatademian.com" style="color:inherit;text-decoration:underline;">Chata Demian</a></span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">לינה פולין</span>
+      <span class="info-value">19 Rooms, Kalwaryjska 66</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">חירום</span>
+      <span class="info-value">📞 112</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">אגרת סלובקיה</span>
+      <a class="info-link" href="https://eznamka.sk">eznamka.sk ↗</a>
+    </div>
+    <div class="info-item">
+      <span class="info-label">אגרת פולין</span>
+      <a class="info-link" href="https://autopay.pl/en">autopay.pl/en ↗</a>
+    </div>
+  </div>
+
+
+  <div class="section-header">
+    <span class="section-flag">🇸🇰</span>
+    <span class="section-title">סלובקיה</span>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- יום 1 -->
+  <div class="day-card">
+    <div class="day-header sk">
+      <div><div class="day-num">יום 1</div><div class="day-date">24/08 שני</div></div>
+      <div class="day-title">נחיתה והצטיידות</div>
+    </div>
+    <div class="activity">
+      <div class="act-time">10:00</div>
+      <div class="act-content">
+        <div class="act-name">איסוף רכבים – OneRent (2 הזמנות)</div>
+        <div class="act-note">שדה התעופה קרקוב + קניית אגרת סלובקיה • 📍 האיסוף בטרמינל עצמו: אחרי יציאה מאזור מסירת המזוודות, לחפש נציג עם טאבלט ולוגו OneRent • רכב 1 (משפחת משולם) איסוף 10:00, רכב 2 (משפחת זפרני) איסוף 09:45 – ⚠️ לתאם עם הנציג שיהיו מוכנים יחד • ⚠️ עם 2 רכבים ל-9 נפשות זה יכול לקחת 45-60 דק' (חוזים, ביטוחים) – לא להיבהל אם מתעכב</div>
+      </div>
+    </div>
+    <div class="activity">
+      <div class="act-time">11:15</div>
+      <div class="act-content">
+        <div class="act-name">ארוחת בוקר – Skansen Smaków</div>
+        <div class="act-note">5 דקות מהשדה</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Skansen+Smakow+Cholerzyn">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">12:15</div>
+      <div class="act-content">
+        <div class="act-name">🌊 אגם אוראבה (Slanická Osada) <span class="act-optional">אופציה א'</span></div>
+        <div class="act-note">~50 דק' נסיעה מ-Skansen Smaków • עצירה קלילה 30-45 דק' • טיילת על המים, גלידה, נוף • בלי מדרגות – מושלם אחרי טיסה</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Slanicka+Osada+Oravska+Priehrada">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">12:15</div>
+      <div class="act-content">
+        <div class="act-name">🏰 טירת אורבה <span class="act-optional">אופציה ב'</span></div>
+        <div class="act-note">~שעה וחצי נסיעה מ-Skansen Smaków • 600 מדרגות – תינוקת במנשא • רק אם יש כוח אחרי הטיסה • <a href="https://www.oravskemuzeum.sk/en">אתר</a></div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Orava+Castle">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">16:10</div>
+      <div class="act-content">
+        <div class="act-name">קניות – Tesco / Kaufland</div>
+        <div class="act-note">Liptovský Mikuláš • ⏱️ מאוראבה: ~50 דק' נסיעה • מטירת אורבה: ~40 דק' נסיעה</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=TESCO+Liptovsky+Mikulas">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">17:10</div>
+      <div class="act-content">
+        <div class="act-name">הגעה – Chata Demian</div>
+        <div class="act-note">15 דקות מהסופר • 🌐 <a href="http://www.chatademian.com">chatademian.com</a> – אתר הבקתה + תחנת מזג אוויר חיה מהמרפסת שלהם!</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Chata+Demian">ניווט</a>
+    </div>
+  </div>
+
+  <!-- יום 2 -->
+  <div class="day-card">
+    <div class="day-header sk">
+      <div><div class="day-num">יום 2</div><div class="day-date">25/08 שלישי</div></div>
+      <div class="day-title">אגם, אוכל וטבע</div>
+    </div>
+    <div class="activity">
+      <div class="act-time">10:40</div>
+      <div class="act-content">
+        <div class="act-name">אגם Hrabovo</div>
+        <div class="act-note">40 דקות מהבקתה • זיפליין 300 מ' מעל האגם + פארק חבלים Tarzania – בחופש הגדול פתוח כל יום 09:00-19:00 • זיפליין ממשקל 40 ק"ג • גם: סירות, פדלבורד, Aquazorbing</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Hrabovo+Ruzomberok">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">13:10</div>
+      <div class="act-content">
+        <div class="act-name">ארוחת צהריים <span class="act-optional">בחרו אחת</span></div>
+        <div class="act-note">🐑 <b>Krajinka Salaš</b> – 6 ק"מ מרוז'ומברוק, בדרך • חוות כבשים עם 1,000 ראש + מסעדה בתוך הרפת (קיר זכוכית לצפייה בכבשים) • מרק ברינדזה, גולאש כבש • מאפייה עם קינוחים מומלצים + חנות גבינות + מגרש משחקים<br>🍽️ <b>Koliba Bešeňovka</b> – 15 דקות מהאגם, צמוד לפארק המים</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Salas+Krajinka+Ruzomberok">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">14:20</div>
+      <div class="act-content">
+        <div class="act-name"><span class="act-optional">אופציה</span> 💧 מפל Lúčansky vodopád</div>
+        <div class="act-note">בכפר Lúčky • ~15 דק' נסיעה מ-Krajinka Salaš/רוז'ומברוק, כ-4 ק"מ מ-Bešeňová (ממש בדרך לפארק המים!) • אחד מ-5 מפלים שהוכרזו אתר מורשת לאומי בסלובקיה • גובה 12 מ' • חניה ממש ליד + 2 דקות הליכה בלבד – מושלם עם תינוקת, ללא צורך במסלול • חינם • עצירה של 15-20 דק'</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Lucansky+vodopad+Lucky">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">15:00</div>
+      <div class="act-content">
+        <div class="act-name">פארק מים Bešeňová</div>
+        <div class="act-note">5 דקות מהמסעדה • פתוח 10:00-20:00 • <a href="https://www.besenova.com/en">אתר</a></div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Besenova+Aquapark">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">19:00</div>
+      <div class="act-content">
+        <div class="act-name">חזרה לבקתה</div>
+        <div class="act-note">25 דקות נסיעה</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Chata+Demian">ניווט</a>
+    </div>
+  </div>
+
+  <!-- יום 3 -->
+  <div class="day-card">
+    <div class="day-header sk">
+      <div><div class="day-num">יום 3</div><div class="day-date">26/08 רביעי</div></div>
+      <div class="day-title">פסגות, טבע ואקשן</div>
+    </div>
+    <div class="activity">
+      <div class="act-time">10:00</div>
+      <div class="act-content">
+        <div class="act-name">הר Chopok – רכבל + Slide Park 🆕</div>
+        <div class="act-note">15 דקות מהבקתה • פתוח 08:00-17:00 • 24€ מבוגר, 17€ ילד • Slide Park חינם עם הרכבל! 7 מגלשות יבשות בהשראת חיות הטטרה • <a href="https://www.jasna.sk/en/activities/summer-activities/slide-park">אתר Slide Park</a> • <a href="https://www.jasna.sk/en">אתר Jasná</a></div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Jasna+Nizke+Tatry">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">14:00</div>
+      <div class="act-content">
+        <div class="act-name">פארק חבלים Tarzania</div>
+        <div class="act-note">צמוד לרכבל – Hotel SKI Záhradky • פתוח 09:00-18:00 • <a href="https://www.tarzania.sk">אתר</a></div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?ll=48.96852,19.57989&navigate=yes">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">גמיש</div>
+      <div class="act-content">
+        <div class="act-name">🥾 שביל "סיפור המים" <span class="act-optional">אופציה בכל יום</span></div>
+        <div class="act-note">3 דק' נסיעה מהבקתה • 4 ק"מ, ~2.5 שעות בקצב משפחתי • חד-כיווני: Hotel Bystrina ← מערת החירות • המרחק בין הקצוות 3 דק' נסיעה – נהג אחד מקפיץ בסוף • החלק היפה: ממלון Chopok ומעלה</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Hotel+Bystrina+Demanovska+Dolina">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">17:15</div>
+      <div class="act-content">
+        <div class="act-name"><span class="act-optional">אופציה</span> מגלשת Demänovská</div>
+        <div class="act-note">10 דקות מהבקתה (לא מ-Tarzania – בדרך חזרה) • פתוח 09:00-18:00 • <a href="https://www.ziarce.sk">אתר</a></div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Bobova+Draha+Demanovska">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">18:00</div>
+      <div class="act-content"><div class="act-name">חזרה לבקתה</div></div>
+      <a class="act-nav" href="https://waze.com/ul?q=Chata+Demian">ניווט</a>
+    </div>
+  </div>
+
+  <!-- יום 4 -->
+  <div class="day-card">
+    <div class="day-header sk">
+      <div><div class="day-num">יום 4</div><div class="day-date">27/08 חמישי</div></div>
+      <div class="day-title">יום מים – Tatralandia</div>
+    </div>
+    <div class="activity">
+      <div class="act-time">10:00</div>
+      <div class="act-content">
+        <div class="act-name">פארק מים Tatralandia</div>
+        <div class="act-note">15 דקות מהבקתה • פתוח 10:00-20:00 • להזמין ב-<a href="https://www.gopass.travel/homepage/tatralandia">gopass.travel</a></div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Aquapark+Tatralandia">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">18:00</div>
+      <div class="act-content">
+        <div class="act-name">ארוחת ערב – Liptovar Pivovarská</div>
+        <div class="act-note">7 דקות מהפארק • בירה craft • BBQ ribs • פתוח עד 22:00</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Liptovar+Liptovsky+Mikulas">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">20:30</div>
+      <div class="act-content">
+        <div class="act-name">חזרה לבקתה</div>
+        <div class="act-note">~20 דקות נסיעה מ-Liptovar Pivovarská</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Chata+Demian">ניווט</a>
+    </div>
+  </div>
+
+  <!-- יום 5 -->
+  <div class="day-card">
+    <div class="day-header sk">
+      <div><div class="day-num">יום 5</div><div class="day-date">28/08 שישי</div></div>
+      <div class="day-title">מעבר לטטרות הגבוהות 🏔️</div>
+    </div>
+    <div class="activity">
+      <div class="act-time">10:00</div>
+      <div class="act-content">
+        <div class="act-name">צ'ק-אאוט Chata Demian</div>
+        <div class="act-note">נסיעה לטטרות הגבוהות • ~שעה נסיעה ל-Ždiar</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Chata+Demian">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">11:00</div>
+      <div class="act-content">
+        <div class="act-name"><span class="act-optional">אופציה</span> 🏰 עצירה ב-Kežmarok</div>
+        <div class="act-note">ממש על הציר, ~40 דק' מ-Chata Demian • הכיכר ההיסטורית (Hlavné námestie) מרוצפת ונוחה להליכה עם עגלה • טירת Kežmarok - החצרות פתוחות לצילום בחינם, הפנים רק בסיור מודרך של 80 דק' (סלובקית - פחות מתאים לילדים) • כנסיית העץ מ-1717, אתר אונסק"ו • 🍵 חנות המפעל של Tatratea - הכי זול לקנות שם מזכרות • עצירה של 45-60 דק' • ~20 דק' משם ל-Ždiar</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Kezmarok+Hlavne+namestie">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">11:30</div>
+      <div class="act-content">
+        <div class="act-name">הגעה – u Maťka a Kubka</div>
+        <div class="act-note">Ždiar 281, 059 55 Ždiar • צ'ק-אין מ-15:00 • השאר מזוודות וצאו!</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Zdiar+281+Slovakia">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">12:00</div>
+      <div class="act-content">
+        <div class="act-name">ארוחת צהריים באזור Ždiar</div>
+        <div class="act-note">לפני Bachledka</div>
+      </div>
+    </div>
+    <div class="activity">
+      <div class="act-time">14:00</div>
+      <div class="act-content">
+        <div class="act-name">🌲 Bachledka – צמרות עצים + מגלשות</div>
+        <div class="act-note">2.7 ק"מ מהבקתה • 5 דקות נסיעה • פתוח 09:00-18:00 • כניסה אחרונה 17:00 • ~28€ מבוגר, ~23€ ילד • <a href="https://bachledka.sk/en">אתר</a></div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Bachledka+Treetop+Walk+Zdiar">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">17:35</div>
+      <div class="act-content">
+        <div class="act-name">📸 תצפית Srdce Strachan resort <span class="act-optional">אופציה – 10 דק' עצירה</span></div>
+        <div class="act-note">~10 דק' נסיעה מ-Bachledka, בדרך חזרה לבקתה • נוף פנורמי מטורף על ההרים + לב ענק לתמונה משפחתית • עצירה קצרה, לא צריך יותר מ-10-15 דק'</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Srdce+Strachan+resort">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">17:50</div>
+      <div class="act-content">
+        <div class="act-name">חזרה לבקתה</div>
+        <div class="act-note">~5 דקות נסיעה מהתצפית</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Zdiar+281+Slovakia">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">19:30</div>
+      <div class="act-content">
+        <div class="act-name"><span class="act-optional">אופציה</span> ארוחת ערב – Ždiarsky dom</div>
+        <div class="act-note">5 דקות מהבקתה • סלובקי אותנטי • Bryndzové Halušky, גולאש צבי, פורל טרי • לא תיירותי!</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Zdiarsky+dom+Zdiar+Slovakia">ניווט</a>
+    </div>
+  </div>
+
+  <!-- יום 6 -->
+  <div class="day-card">
+    <div class="day-header sk">
+      <div><div class="day-num">יום 6</div><div class="day-date">29/08 שבת</div></div>
+      <div class="day-title">טטרות גבוהות – אגם ורכבל</div>
+    </div>
+    <div class="activity">
+      <div class="act-time">09:00</div>
+      <div class="act-content">
+        <div class="act-name">אגם Štrbské Pleso ⭐</div>
+        <div class="act-note">45 דקות מהבקתה • ⚠️ שבת – החניון מתמלא מוקדם, לצאת 08:00-08:15 • הליכה סביב האגם + סירות משוטים (28€ לארבעה) + גלידה • <a href="https://www.strbskepleso.sk">אתר</a></div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Strbske+Pleso">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">11:30</div>
+      <div class="act-content">
+        <div class="act-name">נסיעה ל-Starý Smokovec</div>
+        <div class="act-note">כ-20 דקות נסיעה על כתף ההר – ישירות במקום ירידה לפופרד</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Stary+Smokovec">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">12:00</div>
+      <div class="act-content">
+        <div class="act-name">ארוחת צהריים – Koliba Kamzík</div>
+        <div class="act-note">Starý Smokovec • ליד תחנת הרכבל • מטבח סלובקי מקומי (הלושקי, פירוגי) • חוסך זיג-זג לפופרד ובחזרה (כ-45 דק' נסיעה נחסכות)</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Koliba+Kamzik+Stary+Smokovec">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">13:15</div>
+      <div class="act-content">
+        <div class="act-name">🚡 Hrebienok – רכבל פוניקולר</div>
+        <div class="act-note">Starý Smokovec • 7 דקות לגובה 1,285 מ' • פתוח 08:30-16:30 • רכבל אחרון יורד 16:30! • ⚠️ עולה/יורדת רק כל חצי שעה עגולה – חשוב לתכנן זמן עלייה וירידה, לא רציף! • ⚠️ שבת בצהריים – ייתכן תור, לא להתעכב בארוחה • ילדים עד 6 חינם! • <a href="https://www.vt.sk/en/resort/resort-info/cableway-trips/hrebienok">אתר</a></div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Hrebienok+Stary+Smokovec">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">16:00</div>
+      <div class="act-content">
+        <div class="act-name">חזרה לבקתה</div>
+        <div class="act-note">25 דקות מ-Starý Smokovec לבקתה ב-Ždiar</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Zdiar+281+Slovakia">ניווט</a>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <span class="section-flag">🇵🇱</span>
+    <span class="section-title">פולין – זאקופנה וקרקוב</span>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- יום 7 -->
+  <div class="day-card">
+    <div class="day-header pl">
+      <div><div class="day-num">יום 7</div><div class="day-date">30/08 ראשון</div></div>
+      <div class="day-title">זאקופנה ← קרקוב</div>
+    </div>
+    <div class="activity">
+      <div class="act-time">10:00</div>
+      <div class="act-content">
+        <div class="act-name">צ'ק-אאוט u Maťka a Kubka</div>
+      </div>
+    </div>
+    <div class="activity">
+      <div class="act-time">10:30</div>
+      <div class="act-content">
+        <div class="act-name">🏰 אגם Czorsztyn – שייט + מגלשת + אומגה <span class="act-optional">אופציה א'</span></div>
+        <div class="act-note">40 דקות מהבקתה • שתי טירות מול מול על האגם • סירות + מגלשת הרים + אומגה מעל האגם (40 זלוטי, ממשקל 40 ק"ג) • 2 שעות עצירה • ⚠️ לבחור אופציה א' או ב' – לא יספיק הכל</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Czorsztyn+Castle+Poland">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">13:00</div>
+      <div class="act-content">
+        <div class="act-name">זאקופנה – מדרחוב Krupówki</div>
+        <div class="act-note">55 דקות מהבקתה / 30 דקות מCzorsztyn • Oscypek גבינה מעושנת • קניות • Kürtos</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Krupowki+Zakopane">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">14:00</div>
+      <div class="act-content">
+        <div class="act-name">🚡 רכבל Gubałówka <span class="act-optional">אופציה ב'</span></div>
+        <div class="act-note">ממש על Krupówki • 39 זלוטי מבוגר, 28 זלוטי ילד • נוף מדהים על הטטרה • פארק חבלים + מגלשות למעלה • במקום Czorsztyn – לא בנוסף</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Gubalowka+Zakopane">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">14:30</div>
+      <div class="act-content">
+        <div class="act-name">פארק מים Chochołowskie Termy <span class="act-optional">אופציה</span></div>
+        <div class="act-note">20 דקות מזאקופנה • 30 בריכות תרמיות • <a href="https://gyg.me/Nxj4vPTX">הזמנה מראש</a></div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Chocholowskie+Termy">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">17:00</div>
+      <div class="act-content">
+        <div class="act-name">יציאה לקרקוב</div>
+        <div class="act-note">שעתיים נסיעה מזאקופנה</div>
+      </div>
+    </div>
+    <div class="activity">
+      <div class="act-time">19:30</div>
+      <div class="act-content">
+        <div class="act-name">הגעה – 19 Rooms קרקוב</div>
+        <div class="act-note">Kalwaryjska 66</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Kalwaryjska+66+Krakow">ניווט</a>
+    </div>
+  </div>
+
+  <!-- יום 8 -->
+  <div class="day-card">
+    <div class="day-header pl">
+      <div><div class="day-num">יום 8</div><div class="day-date">31/08 שני</div></div>
+      <div class="day-title">Wawel, קזימייז' וקניות</div>
+    </div>
+    <div class="activity">
+      <div class="act-time">09:30</div>
+      <div class="act-content">
+        <div class="act-name">🏰 טירת Wawel + דרקון יורק אש</div>
+        <div class="act-note">בבוקר – פחות עומס • פתוח 09:00-17:00 • כדאי לקנות מראש • הדרקון יורק אש כל 5 דקות ברחוב למטה</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Wawel+Castle">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">12:00</div>
+      <div class="act-content">
+        <div class="act-name">רובע Kazimierz + ארוחת צהריים</div>
+        <div class="act-note">~10 דקות הליכה/נסיעה מ-Wawel • הרובע היהודי ההיסטורי • ממש ליד הדירה</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Kazimierz+Krakow">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">14:00</div>
+      <div class="act-content">
+        <div class="act-name">🛍️ קניון Bonarka – קניות + GOjump</div>
+        <div class="act-note">7 דקות מהדירה • זמן קניות מורחב: Primark, סופר ענק לממתקים, בגדים • הילדים ב-GOjump/GOkidz בזמן הקניות</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Bonarka+City+Center">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">17:30</div>
+      <div class="act-content">
+        <div class="act-name"><span class="act-optional">אופציה</span> 💡 WOMAI – מוזיאון המדע והאור</div>
+        <div class="act-note">Pawia 34, ליד Galeria Krakowska • ⏱️ כ-15-20 דק' נסיעה מ-Bonarka (הערכה, לא מאומת – לבדוק בוויז בזמן אמת) • "Into the Light" 90 דק' – מעולה לגילאי 8-11 • עד גיל 2 חינם • נגיש לעגלה • בסופ"ש פתוח עד 20:00 • יש להזמין סבב מראש, לא כניסה חופשית</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=WOMAI+Pawia+34+Krakow">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">19:00</div>
+      <div class="act-content">
+        <div class="act-name"><span class="act-optional">אופציה</span> מוזיאון הארקייד</div>
+        <div class="act-note">15 דקות נסיעה מהמרכז • או מוזיאון הפינבול ליד Wawel (Stradomska 15 – קרוב יותר מ-WOMAI, עד 21:00, ~50 זלוטי לשעה) • אם נשאר כוח! • <a href="http://www.krakowarcademuseum.com">אתר</a></div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Krakow+Arcade+Museum">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">21:00</div>
+      <div class="act-content"><div class="act-name">חזרה לדירה</div></div>
+      <a class="act-nav" href="https://waze.com/ul?q=Kalwaryjska+66+Krakow">ניווט</a>
+    </div>
+  </div>
+
+  <!-- יום 9 -->
+  <div class="day-card">
+    <div class="day-header pl">
+      <div><div class="day-num">יום 9</div><div class="day-date">01/09 שלישי</div></div>
+      <div class="day-title">🎢 יום שיא – Energylandia</div>
+    </div>
+    <div class="activity">
+      <div class="act-time">10:00</div>
+      <div class="act-content">
+        <div class="act-name">פארק Energylandia</div>
+        <div class="act-note">50 דקות מהדירה • ⚠️ 01/09 פתוח 10:00-18:00 (לא 20:00!) • שעת הסגירה בפועל לא תמיד מדויקת באפליקציה – לבדוק בזמן אמת • 🎉 יום ראשון ללימודים בפולין – הפארק ריק יחסית! להגיע 09:45 לשערים • ⚠️ ייתכן חיוב אגרת כביש הלוך ושוב גם אם מנווטים לכביש חינם בוויז – להחזיק כ-40 זלוטי מזומן ליתר ביטחון • להזמין מראש + לוקר חובה (~15 זלוטי) • <a href="https://energylandia.pl/en">אתר</a></div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Energylandia">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">18:00</div>
+      <div class="act-content">
+        <div class="act-name">חזרה לדירה</div>
+        <div class="act-note">50 דקות נסיעה</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Kalwaryjska+66+Krakow">ניווט</a>
+    </div>
+  </div>
+
+  <!-- יום 10 -->
+  <div class="day-card">
+    <div class="day-header pl">
+      <div><div class="day-num">יום 10</div><div class="day-date">02/09 רביעי</div></div>
+      <div class="day-title">סגירות וטיסה</div>
+    </div>
+    <div class="activity">
+      <div class="act-time">10:30</div>
+      <div class="act-content">
+        <div class="act-name">קניון Galeria Kazimierz</div>
+        <div class="act-note">8 דקות מהדירה</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Galeria+Kazimierz">ניווט</a>
+    </div>
+    <div class="activity">
+      <div class="act-time">17:45</div>
+      <div class="act-content">
+        <div class="act-name">יציאה לשדה התעופה</div>
+        <div class="act-note">30 דקות נסיעה</div>
+      </div>
+    </div>
+    <div class="activity">
+      <div class="act-time">18:30</div>
+      <div class="act-content">
+        <div class="act-name">🚗 החזרת רכבים – OneRent (חניון TINA)</div>
+        <div class="act-note">⚠️ לא הטרמינל עצמו! נוסעים לחניון TINA Balice: Kapitana Mieczysława Medweckiego 49, 32-083 Balice • אחרי המחסום: ימינה, אח"כ שמאלה לנתיב C • משבצות ONE RENT בקצה הנתיב • להחזיר עם מיכל דלק מלא + פנים נקי (לא צריך שטיפה חיצונית) • מחוץ לשעות פעילות: מפתחות בתיבה מימין למשרד • אזור המתנה + שאטל חינם לטרמינל כל 10 דק', משקאות חמים חינם • הלפדסק: +48 723 60 60 60 (לחצו 0 לאנגלית) • חירום: +48 780 500 950</div>
+      </div>
+      <a class="act-nav" href="https://waze.com/ul?q=Parking+TINA+Kapitana+Mieczyslawa+Medweckiego+49+Balice">ניווט</a>
+    </div>
+  </div>
+
+  <!-- הערות -->
+  <div class="notes-card">
+    <div class="notes-title">📋 הערות חשובות</div>
+    <div class="note-item"><span class="note-emoji">⚠️</span><span>Energylandia – <a href="https://ticket.energylandia.pl/en/">ticket.energylandia.pl</a> • ⚠️ אגרת כביש אפשרית גם בכיוון "ללא אגרה" בוויז</span></div>
+    <div class="note-item"><span class="note-emoji">⚠️</span><span>Tatralandia – <a href="https://www.gopass.travel/homepage/tatralandia">gopass.travel</a> • 24€ לאדם • עד 6 חינם</span></div>
+    <div class="note-item"><span class="note-emoji">🛣️</span><span>אגרת סלובקיה – <a href="https://eznamka.sk">eznamka.sk</a></span></div>
+    <div class="note-item"><span class="note-emoji">🛣️</span><span>אגרת פולין A4 – <a href="https://autopay.pl/en">autopay.pl/en</a> • e-TOLL PL BILET • ⚠️ השכרה לא מכסה אגרות! אחריות שלכם</span></div>
+    <div class="note-item"><span class="note-emoji">📄</span><span><b>רכב 1 – משפחת משולם:</b> הזמנה #75133 • Skoda Superb (D Wagon Premium) • 24/8 10:00 → 2/9 22:00 • איסוף/החזרה שדה קרקוב • 235 PLN/יום, סה"כ 2,750 PLN • פיקדון 500 PLN • כולל ביטול השתתפות עצמית מלא (שמשות+צמיגים) + ק"מ ללא הגבלה</span></div>
+    <div class="note-item"><span class="note-emoji">📄</span><span><b>רכב 2 – משפחת זפרני:</b> הזמנה #76844 • Nissan X-Trail SUV 7 מקומות • 24/8 09:45 → 2/9 22:00 • איסוף/החזרה שדה קרקוב • 250 PLN/יום, סה"כ 3,100 PLN (כולל מושב בטיחות 15-36kg + מעבר גבול) • פיקדון 0 PLN • ⚠️ שעת איסוף שונה ב-15 דק' מרכב 1 – לתאם עם OneRent שיהיו מוכנים יחד</span></div>
+    <div class="note-item"><span class="note-emoji">🚨</span><span><b>לבדוק דחוף:</b> אף אחת משתי ההזמנות לא כוללת מושב בטיחות לתינוקת (0-13kg) – רק מושב 15-36kg לילד גדול יותר. לפנות ל-OneRent לפני הנסיעה!</span></div>
+    <div class="note-item"><span class="note-emoji">🚗</span><span><b>OneRent – כללי ברזל:</b> להחזיר עם מיכל מלא • לא לעשן ברכב (לא מכוסה בביטוח!) • לשמור על ריפוד נקי • לא לאבד מפתחות/פתק חניה (לא מכוסה) • דלק לא נכון = לא מכוסה • קנסות/אגרות שלא שולמו = לא מכוסים</span></div>
+    <div class="note-item"><span class="note-emoji">📞</span><span>OneRent אנגלית: +48 22 250 9319 • חירום נזק לרכב: +48 22 780 500 950</span></div>
+    <div class="note-item"><span class="note-emoji">💶</span><span>מטבע: € סלובקיה • PLN פולין</span></div>
+    <div class="note-item"><span class="note-emoji">📞</span><span>חירום: 112</span></div>
+  </div>
+
+</div>
+
+<!-- ===== RESTAURANTS PAGE ===== -->
+<div id="page-restaurants" class="page">
+
+  <div class="rest-header">
+    <h2>🍽️ מסעדות מומלצות</h2>
+    <p>סלובקיה ופולין • אוגוסט 2026</p>
+  </div>
+
+  <!-- סלובקיה -->
+  <div class="country-block">
+    <div class="country-header sk">
+      <span class="flag">🇸🇰</span>
+      סלובקיה – Ždiar (טטרות גבוהות)
+    </div>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Zdiarsky+dom+Zdiar+Slovakia">
+      <div class="card-left"><div class="emoji">🏔️</div><div><div class="card-name">Ždiarsky dom ⭐</div><div class="card-type">סלובקי אותנטי • Halušky • גולאש צבי • פורל טרי • לא תיירותי!</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Zdiarsky+dom+Zdiar+Slovakia">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Koliba+Zdiar+460+Slovakia">
+      <div class="card-left"><div class="emoji">🍖</div><div><div class="card-name">Koliba Ždiar</div><div class="card-type">סלובקי מסורתי • בשרים • 4.5⭐ 1,796 ביקורות</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Koliba+Zdiar+460+Slovakia">ניווט</a>
+    </a>
+  </div>
+
+  <!-- סלובקיה נמוכות - דמנובסקה -->
+  <div class="country-block">
+    <div class="country-header sk">
+      <span class="flag">🇸🇰</span>
+      סלובקיה – Demänovská Dolina (ליד הבקתה!)
+    </div>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Koliba+Tri+Studnicky+u+Tomasovcov+Demanovska+Dolina">
+      <div class="card-left"><div class="emoji">🏚️</div><div><div class="card-name">Koliba Tri Studničky u Tomášovcov ⭐ 4.3 (404)</div><div class="card-type">מ-1922! • קוליבה משפחתית עם נוף לנחל דמנובקה • בירה+קפה ביתיים • מגרש משחקים ליד • ידידותי לילדים • כל יום 12:00-22:00</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Koliba+Tri+Studnicky+u+Tomasovcov+Demanovska+Dolina">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Koliba+Bystrina+Demanovska+Dolina">
+      <div class="card-left"><div class="emoji">🍲</div><div><div class="card-name">Koliba Bystrina ⭐ 4.8 (3,815)</div><div class="card-type">מדורג #3 מתוך 22 בעמק • Demänovská Dolina 2 • סלובקי מסורתי, מנות גדולות • bryndzové halušky, מרק כרוב, כנדל • פתוח 07:00-22:00 (גם ארוחת בוקר!) • להזמין מראש בעונה</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Koliba+Bystrina+Demanovska+Dolina">ניווט</a>
+    </a>
+  </div>
+
+  <!-- סלובקיה נמוכות -->
+  <div class="country-block">
+    <div class="country-header sk">
+      <span class="flag">🇸🇰</span>
+      סלובקיה – Liptovský Mikuláš
+    </div>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Restart+Burger+Poprad">
+      <div class="card-left"><div class="emoji">🍔</div><div><div class="card-name">Restart Burger (פופרד)</div><div class="card-type">המבורגרים • מוזיאון מכוניות רטרו</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Restart+Burger+Poprad">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Ristorante+Camino+Liptovsky+Mikulas">
+      <div class="card-left"><div class="emoji">🍝</div><div><div class="card-name">Ristorante Camino</div><div class="card-type">איטלקי • פסטות מיוחדות, פיצות, ריזוטו • מומלץ ליד Vrbické pleso/בשנובה</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Ristorante+Camino+Liptovsky+Mikulas">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=YUZA+Restaurant+Liptovsky+Mikulas">
+      <div class="card-left"><div class="emoji">✨</div><div><div class="card-name">YUZA Restaurant</div><div class="card-type">מרכז Liptovský Mikuláš • מודרנית ומעודנת, לא קוליבה קלאסית • ⚠️ המלצה מקבוצה - דירוג לא אומת מול מקור רשמי</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=YUZA+Restaurant+Liptovsky+Mikulas">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Route+66+Liptovsky+Mikulas">
+      <div class="card-left"><div class="emoji">🥩</div><div><div class="card-name">Route 66</div><div class="card-type">סטייק • Rib Eye • Beef Tartar</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Route+66+Liptovsky+Mikulas">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Liptovar+Liptovsky+Mikulas">
+      <div class="card-left"><div class="emoji">🍺</div><div><div class="card-name">Liptovar Pivovarská</div><div class="card-type">בית בירה • לחי בקר מיוחדת</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Liptovar+Liptovsky+Mikulas">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Alto+Sushi+Liptovsky+Mikulas">
+      <div class="card-left"><div class="emoji">🍣</div><div><div class="card-name">ALTO Sushi</div><div class="card-type">סושי • סשימי • קימצ'י</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Alto+Sushi+Liptovsky+Mikulas">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=AHA+Pizza+Pasta+Demanova">
+      <div class="card-left"><div class="emoji">🍕</div><div><div class="card-name">AHA Pizza Pasta</div><div class="card-type">איטלקי • פיצה נאפוליטנית אותנטית</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=AHA+Pizza+Pasta+Demanova">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=La+Simona+Bistro+Garbiarska+905+Liptovsky+Mikulas">
+      <div class="card-left"><div class="emoji">🇮🇹</div><div><div class="card-name">La Simona Bistro ⭐</div><div class="card-type">איטלקי • 4.8⭐ 568 ביקורות • גם ארוחת בוקר מעולה + מכולת איטלקית • ⚠️ סגור ביום א' • שישי פתוח עד 23:00</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=La+Simona+Bistro+Garbiarska+905+Liptovsky+Mikulas">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Liptovska+Izba+Liptovsky+Mikulas">
+      <div class="card-left"><div class="emoji">🏠</div><div><div class="card-name">Liptovská Izba</div><div class="card-type">סלובקי מקומי • גולאש ציד</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Liptovska+Izba+Liptovsky+Mikulas">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Kozi+vrsok+Ivachnova">
+      <div class="card-left"><div class="emoji">🐐</div><div><div class="card-name">Kozí vŕšok</div><div class="card-type">קוליבה • אוכל הרים סלובקי</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Kozi+vrsok+Ivachnova">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Marina+Liptov+Bobrovec">
+      <div class="card-left"><div class="emoji">⛵</div><div><div class="card-name">Marina Liptov</div><div class="card-type">נוף לאגם • דגים • אווירה ייחודית</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Marina+Liptov+Bobrovec">ניווט</a>
+    </a>
+  </div>
+
+  <!-- פולין - זאקופנה -->
+  <div class="country-block">
+    <div class="country-header pl">
+      <span class="flag">🇵🇱</span>
+      זאקופנה
+    </div>
+
+    <div style="background:rgba(244,162,97,0.1);border:1px solid rgba(244,162,97,0.3);border-radius:10px;margin:0 0 12px;padding:10px 14px;font-size:12px;color:#C9B8A8;line-height:1.6;">
+      💡 <b>טיפ:</b> להימנע ממסעדות שנמצאות ממש על מדרחוב Krupówki - רובן יקרות ופחות איכותיות. המקומות הטובים נמצאים 200-300 מ' מהמדרחוב.
+    </div>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Bakowo+Zohylina+Wyzno+Pilsudskiego+28a+Zakopane">
+      <div class="card-left"><div class="emoji">🏕️</div><div><div class="card-name">Bąkowo Zohylina Wyźnio ⭐ 4.6 (7,516)</div><div class="card-type">Piłsudskiego 28a • אווירה גורלית אמיתית, מוזיקה חיה, צוות בלבוש מסורתי • 40-80 זלוטי לאדם • חניה חינם • 13:00-24:00 • להזמין מראש!</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Bakowo+Zohylina+Wyzno+Pilsudskiego+28a+Zakopane">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Bakowo+Zohylina+Niznio+Pilsudskiego+6+Zakopane">
+      <div class="card-left"><div class="emoji">🔥</div><div><div class="card-name">Bąkowo Zohylina Niźnio ⭐ 4.6 (11,000)</div><div class="card-type">Piłsudskiego 6 • הסניף הקרוב יותר ל-Krupówki (250 מ' מהגשר) • צלעות בדבש, קוואשניצה, גולונקה • 13:00-24:00 • להזמין מראש</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Bakowo+Zohylina+Niznio+Pilsudskiego+6+Zakopane">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Karczma+Obrochtowka+Kraszewskiego+10a+Zakopane">
+      <div class="card-left"><div class="emoji">🥟</div><div><div class="card-name">Obrochtówka ⭐ 4.9 (9,733)</div><div class="card-type">Kraszewskiego 10a • כמה צעדים מהמדרחוב, בלי מוזיקה גורלית רועשת • פירוגי, פנקייק תפו"א, רוסול • מנות ענקיות, מחירים הוגנים • 60-80 זלוטי לאדם</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Karczma+Obrochtowka+Kraszewskiego+10a+Zakopane">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Karczma+Po+Zboju+Krupowki+Zakopane">
+      <div class="card-left"><div class="emoji">🏔️</div><div><div class="card-name">Karczma Po Zbóju ⭐ 4.1 (1,078)</div><div class="card-type">פולני הררי אותנטי • פירוגי • גולונקה • מוזיקה חיה | Krupówki 22B (על המדרחוב)</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Karczma+Po+Zboju+Krupowki+Zakopane">ניווט</a>
+    </a>
+  </div>
+
+  <!-- פולין - קרקוב -->
+  <div class="country-block">
+    <div class="country-header pl">
+      <span class="flag">🇵🇱</span>
+      פולין – קרקוב (Kazimierz)
+    </div>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Morskie+Oko+Krakow+Plac+Szczepanski">
+      <div class="card-left"><div class="emoji">🏔️</div><div><div class="card-name">Morskie Oko ⭐ 4.6 (11,025 ביקורות)</div><div class="card-type">פולני הררי • פירוגי • בשרי ציד • מוזיקה חיה • פינת ילדים | Plac Szczepański 8</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Morskie+Oko+Krakow+Plac+Szczepanski">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Starka+Restaurant+Kazimierz+Krakow">
+      <div class="card-left"><div class="emoji">🥃</div><div><div class="card-name">Starka ⭐ 4.5</div><div class="card-type">פולני מודרני • Kazimierz • אווירה מיוחדת • מתאים לערב מבוגרים</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Starka+Restaurant+Kazimierz+Krakow">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Pierogi+MR+Vincent+Krakow">
+      <div class="card-left"><div class="emoji">🥟</div><div><div class="card-name">Pierogi MR Vincent</div><div class="card-type">פירוגי • 30+ טעמים • זול</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Pierogi+MR+Vincent+Krakow">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Przystanek+Pierogarnia+Krakow">
+      <div class="card-left"><div class="emoji">🥟</div><div><div class="card-name">Przystanek Pierogarnia</div><div class="card-type">פירוגי • זול • מגוון ענק</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Przystanek+Pierogarnia+Krakow">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Edo+Fusion+Krakow">
+      <div class="card-left"><div class="emoji">🍜</div><div><div class="card-name">Edo Fusion Ramen</div><div class="card-type">ראמן • יפני-תאילנדי • הטוב בעיר</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Edo+Fusion+Krakow">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Youmiko+Sushi+Plac+Nowy+Krakow">
+      <div class="card-left"><div class="emoji">🍣</div><div><div class="card-name">Youmiko Sushi</div><div class="card-type">סושי • Plac Nowy • ליד הדירה</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Youmiko+Sushi+Plac+Nowy+Krakow">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Pimiento+Steakhouse+Krakow">
+      <div class="card-left"><div class="emoji">🥩</div><div><div class="card-name">Pimiento Steakhouse</div><div class="card-type">סטייק • בשר • Kazimierz</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Pimiento+Steakhouse+Krakow">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Kuchnia+u+Doroty+Krakow">
+      <div class="card-left"><div class="emoji">🏠</div><div><div class="card-name">Kuchnia u Doroty</div><div class="card-type">פולני ביתי • לוקאלי אמיתי • זול • Kazimierz</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Kuchnia+u+Doroty+Krakow">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Krakoski+Miodowa+39+Krakow">
+      <div class="card-left"><div class="emoji">🥣</div><div><div class="card-name">Krakoski</div><div class="card-type">Miodowa 39, לב Kazimierz • פולני מסורתי - ז'ורק, פירוגי, שניצל • ⚠️ המלצה מקבוצה - דירוג לא אומת מול מקור רשמי</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Krakoski+Miodowa+39+Krakow">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Trattoria+Mamma+Mia+Krakow">
+      <div class="card-left"><div class="emoji">🍕</div><div><div class="card-name">Trattoria Mamma Mia</div><div class="card-type">איטלקי • פסטה • פיצה • 10/10</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Trattoria+Mamma+Mia+Krakow">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Dolabella+Due+Krakow">
+      <div class="card-left"><div class="emoji">🍕</div><div><div class="card-name">Dolabella Due</div><div class="card-type">איטלקי • פיצה קריספית • מוסתר</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Dolabella+Due+Krakow">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Boscaiola+Krakow">
+      <div class="card-left"><div class="emoji">🍕</div><div><div class="card-name">Boscaiola</div><div class="card-type">איטלקי • טרטוריה • מחירים טובים</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Boscaiola+Krakow">ניווט</a>
+    </a>
+
+    <a class="restaurant-card" href="https://waze.com/ul?q=Pizza+Garden+Krakow">
+      <div class="card-left"><div class="emoji">🍕</div><div><div class="card-name">Pizza Garden</div><div class="card-type">פיצה נאפוליטנית • חצר גדולה • ילדים</div></div></div>
+      <a class="nav-btn" href="https://waze.com/ul?q=Pizza+Garden+Krakow">ניווט</a>
+    </a>
+  </div>
+
+  <div class="rest-note">💡 לחץ על "ניווט" לפתיחת וויז ישירות</div>
+
+</div>
+
+<footer>✈️ טיסה חזרה 02/09 • בהצלחה!</footer>
+
+<!-- ===== ATTRACTIONS PAGE ===== -->
+<div id="page-attractions" class="page">
+  <div class="hero">
+    <div class="hero-flag">🎯</div>
+    <h1>אטרקציות מומלצות</h1>
+    <p>סלובקיה • זאקופנה • זאטור • קרקוב</p>
+    <div class="hero-tags">
+      <span class="tag">🎢 פארקים</span>
+      <span class="tag">🏰 טירות</span>
+      <span class="tag">🥾 טבע</span>
+      <span class="tag">🕍 היסטוריה</span>
+    </div>
+  </div>
+
+  <style>
+    .att-section { display:flex; align-items:center; gap:10px; padding:16px 20px 8px; }
+    .att-section-flag { font-size:18px; }
+    .att-section-title { font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--sub); }
+    .att-section-line { flex:1; height:1px; background:var(--border); }
+    .att-card { margin:0 16px 10px; background:var(--card); border-radius:14px; border:1px solid var(--border); overflow:hidden; }
+    .att-top { padding:12px 16px 8px; display:flex; gap:10px; align-items:flex-start; }
+    .att-emoji { font-size:22px; flex-shrink:0; }
+    .att-name { font-size:14px; font-weight:700; color:var(--text); line-height:1.3; }
+    .att-loc { font-size:11px; color:var(--sub); margin-top:2px; }
+    .att-desc { font-size:12px; color:#9BB5C8; line-height:1.5; padding:0 16px 10px; }
+    .att-actions { display:flex; gap:8px; padding:0 16px 12px; flex-wrap:wrap; }
+    .att-btn-book { background:var(--accent); color:#1A1A1A; border:none; border-radius:20px; padding:7px 12px; font-size:12px; font-family:'Heebo',sans-serif; font-weight:700; cursor:pointer; text-decoration:none; text-align:center; }
+    .att-btn-official { background:transparent; border:1px solid var(--blue); color:var(--blue); border-radius:20px; padding:7px 12px; font-size:12px; font-family:'Heebo',sans-serif; font-weight:600; text-decoration:none; text-align:center; }
+    .att-btn-nav { background:rgba(78,168,222,0.15); border:1px solid rgba(78,168,222,0.3); color:var(--blue); border-radius:20px; padding:7px 12px; font-size:12px; font-family:'Heebo',sans-serif; font-weight:600; text-decoration:none; text-align:center; }
+    .att-badge { display:inline-block; font-size:10px; font-weight:700; padding:2px 6px; border-radius:10px; margin-right:4px; vertical-align:middle; }
+    .att-badge-kids { background:rgba(82,183,136,0.2); color:#52B788; border:1px solid rgba(82,183,136,0.3); }
+    .att-badge-pop { background:rgba(244,162,97,0.2); color:var(--accent); border:1px solid rgba(244,162,97,0.3); }
+    .att-badge-il { background:rgba(78,168,222,0.2); color:var(--blue); border:1px solid rgba(78,168,222,0.3); }
+  </style>
+
+  <!-- סלובקיה -->
+  <div class="att-section"><span class="att-section-flag">🇸🇰</span><span class="att-section-title">סלובקיה</span><div class="att-section-line"></div></div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🌊</div><div><div class="att-name">Tatralandia <span class="att-badge att-badge-kids">ילדים</span></div><div class="att-loc">📍 15 דקות מ-Chata Demian</div></div></div>
+    <div class="att-desc">פארק מים ענק עם בריכות חמות, מגלשות ואזור ילדים מיוחד. אחד הפופולריים ביותר בסלובקיה.</div>
+    <div class="att-actions"><a class="att-btn-book" href="https://www.gopass.travel/homepage/tatralandia">🎟️ הזמנה</a><a class="att-btn-nav" href="https://waze.com/ul?q=Aquapark+Tatralandia">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🌡️</div><div><div class="att-name">Bešeňová <span class="att-badge att-badge-kids">ילדים</span></div><div class="att-loc">📍 40 דקות מ-Chata Demian</div></div></div>
+    <div class="att-desc">מרחצאות תרמיים עם מים מינרליים, מגלשות ואזור ספא. מים נעימים גם בימים קרירים.</div>
+    <div class="att-actions"><a class="att-btn-official" href="https://www.besenova.com/en">אתר רשמי</a><a class="att-btn-nav" href="https://waze.com/ul?q=Besenova+Aquapark">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🚡</div><div><div class="att-name">Chopok – רכבל Jasná <span class="att-badge att-badge-pop">פופולרי</span></div><div class="att-loc">📍 15 דקות מ-Chata Demian</div></div></div>
+    <div class="att-desc">רכבל לפסגת Chopok (2,024 מ'). נוף מדהים על הטטרה הנמוכה. בקיץ: טיולי הרים.</div>
+    <div class="att-actions"><a class="att-btn-official" href="https://www.jasna.sk/en">אתר רשמי</a><a class="att-btn-nav" href="https://waze.com/ul?q=Jasna+Nizke+Tatry">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🌲</div><div><div class="att-name">Tarzania – פארק חבלים <span class="att-badge att-badge-kids">ילדים</span></div><div class="att-loc">📍 צמוד לרכבל – Hotel SKI Záhradky</div></div></div>
+    <div class="att-desc">34 פלטפורמות ו-95 מכשולים בגובה 4-7 מטר. מסלול ילדים נפרד. פתוח 09:00-18:00 בקיץ.</div>
+    <div class="att-actions"><a class="att-btn-official" href="https://www.tarzania.sk">אתר רשמי</a><a class="att-btn-nav" href="https://waze.com/ul?ll=48.96852,19.57989&navigate=yes">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🎿</div><div><div class="att-name">מגלשת Demänovská <span class="att-badge att-badge-kids">ילדים</span></div><div class="att-loc">📍 10 דקות מ-Chata Demian</div></div></div>
+    <div class="att-desc">מגלשת קיץ על מסילה - מגלשים בעגלת מתכת במורד ההר. מסלול ~1 ק"מ עם נוף מהמם.</div>
+    <div class="att-actions"><a class="att-btn-official" href="https://www.ziarce.sk">אתר רשמי</a><a class="att-btn-nav" href="https://waze.com/ul?q=Bobova+Draha+Demanovska">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🏰</div><div><div class="att-name">טירת אורבה <span class="att-badge att-badge-pop">פופולרי</span></div><div class="att-loc">📍 שעה וחצי מ-Chata Demian</div></div></div>
+    <div class="att-desc">אחת הטירות היפות בסלובקיה על סלע גיר מרשים. מוזיאון, נשק היסטורי ותצפית מדהימה.</div>
+    <div class="att-actions"><a class="att-btn-official" href="https://www.oravskemuzeum.sk/en">אתר רשמי</a><a class="att-btn-nav" href="https://waze.com/ul?q=Orava+Castle">ניווט</a></div>
+  </div>
+
+  <!-- זאקופנה -->
+  <div class="att-section"><span class="att-section-flag">🇵🇱</span><span class="att-section-title">זאקופנה</span><div class="att-section-line"></div></div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🌊</div><div><div class="att-name">Chochołowskie Termy <span class="att-badge att-badge-pop">פופולרי</span></div><div class="att-loc">📍 20 דקות מזאקופנה</div></div></div>
+    <div class="att-desc">הפארק התרמי הגדול ביותר בפולין - 30 בריכות עם מים תרמיים. מגלשות, ג'קוזי וסאונות עם נוף הרים.</div>
+    <div class="att-actions"><a class="att-btn-book" href="https://gyg.me/Nxj4vPTX">🎟️ כרטיס</a><a class="att-btn-book" href="https://gyg.me/teyC6wPi">🚌 עם הסעה</a><a class="att-btn-nav" href="https://waze.com/ul?q=Chocholowskie+Termy">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🚡</div><div><div class="att-name">Kasprowy Wierch <span class="att-badge att-badge-pop">פופולרי</span></div><div class="att-loc">📍 זאקופנה</div></div></div>
+    <div class="att-desc">רכבל לגבול פולין-סלובקיה ב-1,987 מ'. נוף פנורמי עוצר נשימה. להזמין מראש - מאוד מבוקש.</div>
+    <div class="att-actions"><a class="att-btn-book" href="https://gyg.me/JozVHFmn">🎟️ GetYourGuide</a><a class="att-btn-nav" href="https://waze.com/ul?q=Kasprowy+Wierch">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🥾</div><div><div class="att-name">Morskie Oko <span class="att-badge att-badge-pop">פופולרי</span></div><div class="att-loc">📍 30 דקות מזאקופנה</div></div></div>
+    <div class="att-desc">האגם הגדול בטטרה - "עין הים". צבע תכלת מרהיב. הגעה ברגל או בעגלת סוסים.</div>
+    <div class="att-actions"><a class="att-btn-book" href="https://gyg.me/mzxWkzBs">🎟️ GetYourGuide</a><a class="att-btn-nav" href="https://waze.com/ul?q=Morskie+Oko+Zakopane">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🚣</div><div><div class="att-name">Dunajec – רפטינג <span class="att-badge att-badge-kids">ילדים</span></div><div class="att-loc">📍 45 דקות מזאקופנה</div></div></div>
+    <div class="att-desc">שייט בסירות עץ מסורתיות בין צוקי הגבול. 2 שעות נוף מרהיב. מתאים מגיל 3.</div>
+    <div class="att-actions"><a class="att-btn-book" href="https://gyg.me/VrNZjV31">🎟️ GetYourGuide</a><a class="att-btn-nav" href="https://waze.com/ul?q=Dunajec+river+rafting">ניווט</a></div>
+  </div>
+
+  <!-- זאטור -->
+  <div class="att-section"><span class="att-section-flag">🇵🇱</span><span class="att-section-title">זאטור – פארקים</span><div class="att-section-line"></div></div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🎢</div><div><div class="att-name">Energylandia <span class="att-badge att-badge-pop">פופולרי</span></div><div class="att-loc">📍 50 דקות מקרקוב</div></div></div>
+    <div class="att-desc">הפארק הגדול בפולין - 19 רכבות הרים! Kids Zone, Family Zone ופארק מים. יום שלם לכל הגילאים.</div>
+    <div class="att-actions"><a class="att-btn-book" href="https://gyg.me/4pxoi3k5">🎟️ GetYourGuide</a><a class="att-btn-nav" href="https://waze.com/ul?q=Energylandia">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🦕</div><div><div class="att-name">Zatorland – דינוזאורים <span class="att-badge att-badge-kids">ילדים</span></div><div class="att-loc">📍 3 ק"מ מ-Energylandia</div></div></div>
+    <div class="att-desc">100+ דינוזאורים אנימטרוניים בגודל טבעי - זזים ושואגים! פארק מיתולוגיה ולונה פארק. מושלם לקטנים.</div>
+    <div class="att-actions"><a class="att-btn-official" href="https://zatorland.pl">אתר רשמי</a><a class="att-btn-nav" href="https://waze.com/ul?q=Zatorland+Zator">ניווט</a></div>
+  </div>
+
+  <!-- קרקוב -->
+  <div class="att-section"><span class="att-section-flag">🇵🇱</span><span class="att-section-title">קרקוב</span><div class="att-section-line"></div></div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🧂</div><div><div class="att-name">מכרות מלח Wieliczka <span class="att-badge att-badge-pop">פופולרי</span></div><div class="att-loc">📍 15 דקות מקרקוב</div></div></div>
+    <div class="att-desc">אתר UNESCO - קתדרלה תת-קרקעית במלח ב-135 מ' עומק. 2.5 שעות סיור. להזמין מראש!</div>
+    <div class="att-actions"><a class="att-btn-book" href="https://gyg.me/1unxDz73">🎟️ GetYourGuide</a><a class="att-btn-nav" href="https://waze.com/ul?q=Wieliczka+Salt+Mine">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">😢</div><div><div class="att-name">אושוויץ-בירקנאו <span class="att-badge att-badge-il">ישראלים</span></div><div class="att-loc">📍 שעה וחצי מקרקוב</div></div></div>
+    <div class="att-desc">ביקור חובה לכל ישראלי. מדריכים דוברי עברית. חוויה מטלטלת ובלתי נשכחת. להזמין מראש.</div>
+    <div class="att-actions"><a class="att-btn-book" href="https://gyg.me/hsb9vnpc">🎟️ GetYourGuide</a><a class="att-btn-nav" href="https://waze.com/ul?q=Auschwitz+Birkenau">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🏰</div><div><div class="att-name">טירת Wawel <span class="att-badge att-badge-pop">פופולרי</span></div><div class="att-loc">📍 לב קרקוב</div></div></div>
+    <div class="att-desc">ארמון המלכים הפולנים. קתדרלה, אוצרות מלכותיים ותצפית על קרקוב. סמל העיר.</div>
+    <div class="att-actions"><a class="att-btn-book" href="https://gyg.me/NIHwjJwK">🎟️ GetYourGuide</a><a class="att-btn-nav" href="https://waze.com/ul?q=Wawel+Castle">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🕍</div><div><div class="att-name">רובע Kazimierz <span class="att-badge att-badge-il">ישראלים</span></div><div class="att-loc">📍 ליד הדירה שלך</div></div></div>
+    <div class="att-desc">הרובע היהודי ההיסטורי - בתי כנסת, מוזיאון, מסעדות. אן פרנק נסתתרה כאן. צולם כאן "רשימת שינדלר".</div>
+    <div class="att-actions"><a class="att-btn-book" href="https://gyg.me/V4Xt2OXs">🎟️ סיור מודרך</a><a class="att-btn-nav" href="https://waze.com/ul?q=Kazimierz+Krakow">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🏙️</div><div><div class="att-name">העיר העתיקה <span class="att-badge att-badge-pop">פופולרי</span></div><div class="att-loc">📍 מרכז קרקוב</div></div></div>
+    <div class="att-desc">כיכר השוק הגדולה באירופה, קתדרלת מריה ומגדל פעמונים. ליבה של קרקוב.</div>
+    <div class="att-actions"><a class="att-btn-book" href="https://gyg.me/YTLtekWs">🎟️ סיור מודרך</a><a class="att-btn-nav" href="https://waze.com/ul?q=Krakow+Main+Market+Square">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🎮</div><div><div class="att-name">GOjump + GOkidz <span class="att-badge att-badge-kids">ילדים</span></div><div class="att-loc">📍 קניון Bonarka</div></div></div>
+    <div class="att-desc">GOjump - פארק טרמפולינות ענק. GOkidz - 2,000 מ"ר לילדים קטנים. שניהם באותו מקום!</div>
+    <div class="att-actions"><a class="att-btn-book" href="https://gyg.me/cLWKTA1b">🎟️ הזמנה</a><a class="att-btn-nav" href="https://waze.com/ul?q=GOjump+Krakow+Bonarka">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🕹️</div><div><div class="att-name">מוזיאון הארקייד <span class="att-badge att-badge-kids">ילדים</span></div><div class="att-loc">📍 קרקוב</div></div></div>
+    <div class="att-desc">מאות משחקי ארקייד וינטג' מהשנות ה-70-90. כרטיס אחד = שחקים ללא הגבלה.</div>
+    <div class="att-actions"><a class="att-btn-official" href="http://www.krakowarcademuseum.com">אתר רשמי</a><a class="att-btn-nav" href="https://waze.com/ul?q=Krakow+Arcade+Museum">ניווט</a></div>
+  </div>
+
+  <div style="text-align:center; padding:16px; font-size:11px; color:var(--sub);">
+    🎟️ קישורי GetYourGuide כוללים עמלת שותפים
+  </div>
+</div>
+
+<!-- ===== SHOPPING PAGE ===== -->
+<div id="page-shopping" class="page">
+  <div class="hero">
+    <div class="hero-flag">🛒</div>
+    <h1>מה לקנות ולטעום</h1>
+    <p>סלובקיה • פולין • זאקופנה • קרקוב</p>
+    <div class="hero-tags">
+      <span class="tag">🧀 גבינות</span>
+      <span class="tag">🍫 מתוקים</span>
+      <span class="tag">🥐 אפייה</span>
+      <span class="tag">🎁 מזכרות</span>
+    </div>
+  </div>
+
+  <style>
+    .shop-section { display:flex; align-items:center; gap:10px; padding:16px 20px 8px; }
+    .shop-section-flag { font-size:18px; }
+    .shop-section-title { font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--sub); }
+    .shop-section-line { flex:1; height:1px; background:var(--border); }
+    .shop-card { margin:0 16px 10px; background:var(--card); border-radius:14px; border:1px solid var(--border); overflow:hidden; padding:14px 16px; }
+    .shop-card-header { display:flex; gap:12px; align-items:flex-start; margin-bottom:6px; }
+    .shop-emoji { font-size:26px; flex-shrink:0; }
+    .shop-name { font-size:15px; font-weight:700; color:var(--text); }
+    .shop-sub { font-size:11px; color:var(--sub); margin-top:2px; }
+    .shop-desc { font-size:12px; color:#9BB5C8; line-height:1.6; }
+    .shop-tip { display:inline-block; background:rgba(244,162,97,0.15); border:1px solid rgba(244,162,97,0.3); color:var(--accent); font-size:11px; font-weight:600; padding:3px 8px; border-radius:10px; margin-top:8px; }
+    .shop-where { font-size:11px; color:var(--sub); margin-top:6px; }
+    .shop-price { display:inline-block; background:rgba(82,183,136,0.15); border:1px solid rgba(82,183,136,0.3); color:#52B788; font-size:11px; font-weight:600; padding:3px 8px; border-radius:10px; margin-top:4px; margin-right:4px; }
+  </style>
+
+  <!-- סלובקיה - לטעום -->
+  <div class="shop-section"><span class="shop-section-flag">🇸🇰</span><span class="shop-section-title">סלובקיה – לטעום</span><div class="shop-section-line"></div></div>
+
+  <div class="shop-card">
+    <div class="shop-card-header"><div class="shop-emoji">🧀</div><div><div class="shop-name">Bryndza – גבינת כבשים</div><div class="shop-sub">המוצר הסלובקי הכי מסורתי</div></div></div>
+    <div class="shop-desc">גבינת כבשים טרייה מלוחה ועוקצנית. הבסיס של Bryndzové halušky - המנה הלאומית של סלובקיה. לטעום טריה בחווה.</div>
+    <div class="shop-tip">💡 חוות Salaš בדרך – עצירה ספונטנית</div>
+    <div class="shop-price">~2€ לגביה</div>
+  </div>
+
+  <div class="shop-card">
+    <div class="shop-card-header"><div class="shop-emoji">🥛</div><div><div class="shop-name">Žinčica – משקה כבשים</div><div class="shop-sub">טעם שלא תמצאו בשום מקום אחר</div></div></div>
+    <div class="shop-desc">משקה מי גבינה חם מסורתי. טעם חמצמץ ומיוחד - מי שמכיר לא מוותר עליו. מוגש חם בחורף, קר בקיץ.</div>
+    <div class="shop-tip">💡 מהחווה ישירות - חוויה ייחודית</div>
+    <div class="shop-price">~1.5€</div>
+  </div>
+
+  <div class="shop-card">
+    <div class="shop-card-header"><div class="shop-emoji">🍺</div><div><div class="shop-name">Kofola – קולה סלובקית</div><div class="shop-sub">מהתקופה הקומוניסטית</div></div></div>
+    <div class="shop-desc">תחליף הקולה הסלובקי מהתקופה הקומוניסטית שנשאר פופולרי. טעם שונה לחלוטין מקוקה קולה - פחות מתוק, עשבוני יותר. חובה לנסות!</div>
+    <div class="shop-tip">💡 בכל בר ומסעדה, תבקשו "Kofola on tap"</div>
+    <div class="shop-price">~1.5€ בכוס</div>
+  </div>
+
+  <!-- סלובקיה - לקנות -->
+  <div class="shop-section"><span class="shop-section-flag">🇸🇰</span><span class="shop-section-title">סלובקיה – לקנות הביתה</span><div class="shop-section-line"></div></div>
+
+  <div class="shop-card">
+    <div class="shop-card-header"><div class="shop-emoji">🍫</div><div><div class="shop-name">Horalky – ויפר פיסטוק/שוקולד</div><div class="shop-sub">סמל הטטרה</div></div></div>
+    <div class="shop-desc">ויפר קלאסי עם מילוי פיסטוק מצופה שוקולד. על האריזה פרח האדלוואיס של הטטרה. סלובקים גדלו על זה. מושלם כמזכרת.</div>
+    <div class="shop-where">📍 בכל סופר • Tesco / Kaufland</div>
+    <div class="shop-price">~0.5€</div>
+  </div>
+
+  <div class="shop-card">
+    <div class="shop-card-header"><div class="shop-emoji">☕</div><div><div class="shop-name">Kávenky – ויפר קפה</div><div class="shop-sub">הקלאסיקה הכי אהובה</div></div></div>
+    <div class="shop-desc">4 שכבות ויפר עם מילוי קפה ואגוזים. "הטעים ביותר שאכלתי בחיים" - ביקורות אנגלים שביקרו בסלובקיה. לקנות כמה קופסאות.</div>
+    <div class="shop-where">📍 בכל סופר • Tesco / Kaufland</div>
+    <div class="shop-price">~0.8€</div>
+  </div>
+
+  <div class="shop-card">
+    <div class="shop-card-header"><div class="shop-emoji">🍪</div><div><div class="shop-name">Fidorka – ויפר שוקולד</div><div class="shop-sub">בטעמים שונים</div></div></div>
+    <div class="shop-desc">ויפר עגול מצופה שוקולד בטעמים: אגוזים כהים (אדום), אגוזים חלב (ירוק), קוקוס (כחול), שוקולד מריר (חום). כל צבע - טעם אחר.</div>
+    <div class="shop-where">📍 בכל סופר</div>
+    <div class="shop-price">~0.5€ ליחידה</div>
+  </div>
+
+  <div class="shop-card">
+    <div class="shop-card-header"><div class="shop-emoji">🧀</div><div><div class="shop-name">Bryndza ארוזה לבית</div><div class="shop-sub">לקחת הביתה</div></div></div>
+    <div class="shop-desc">גבינת הכבשים הסלובקית הקלאסית - ארוזה ואטומה. נשמרת יפה בטיסה. מעולה על לחם או בפסטה.</div>
+    <div class="shop-where">📍 Tesco / Kaufland / חנות גבינות</div>
+    <div class="shop-price">~2-3€ לאריזה</div>
+  </div>
+
+  <!-- פולין זאקופנה - לטעום -->
+  <div class="shop-section"><span class="shop-section-flag">🇵🇱</span><span class="shop-section-title">זאקופנה – לטעום ברחוב</span><div class="shop-section-line"></div></div>
+
+  <div class="shop-card">
+    <div class="shop-card-header"><div class="shop-emoji">🧀</div><div><div class="shop-name">Oscypek – גבינה מעושנת על הגריל ⭐</div><div class="shop-sub">חובה מוחלטת!</div></div></div>
+    <div class="shop-desc">גבינת כבשים מעושנת צלויה על גריל רחוב עם ריבת חמוציות. טעם כמו חלומי מעושן. "עצרתי וקניתי כמה שיכולתי". בכל הדוכנים ב-Krupówki.</div>
+    <div class="shop-tip">💡 תחפשו דוכנים עם גריל פעיל - לקנות חם!</div>
+    <div class="shop-price">~3-4€ ליחידה</div>
+  </div>
+
+  <div class="shop-card">
+    <div class="shop-card-header"><div class="shop-emoji">🥐</div><div><div class="shop-name">Precel Gorący – פרצל חם ממולא</div><div class="shop-sub">סניפים בכל העיר</div></div></div>
+    <div class="shop-desc">פרצל פולני חם ממולא בגבינה, בשר, ירקות. מנה מהירה מושלמת לאחר הצהריים. שרשרת עם סניפים רבים בזאקופנה ובקרקוב.</div>
+    <div class="shop-where">📍 Krupówki + קרקוב עיר עתיקה</div>
+    <div class="shop-price">~2-3€</div>
+  </div>
+
+  <div class="shop-card">
+    <div class="shop-card-header"><div class="shop-emoji">🍩</div><div><div class="shop-name">Pączki – סופגניות פולניות</div><div class="shop-sub">Pączkarnia Dobra</div></div></div>
+    <div class="shop-desc">סופגניות פולניות מסורתיות ממולאות ריבת ורדים עם סוכר אבקה. שונות לחלוטין מסופגניות ישראליות - קלות יותר, עם ריבה מיוחדת.</div>
+    <div class="shop-where">📍 קרקוב – Pączkarnia Dobra</div>
+    <div class="shop-price">~1€ ליחידה</div>
+  </div>
+
+  <div class="shop-card">
+    <div class="shop-card-header"><div class="shop-emoji">🍡</div><div><div class="shop-name">Kürtőskalács – קרקושקאלץ'</div><div class="shop-sub">מאפה מגולגל על שיפוד</div></div></div>
+    <div class="shop-desc">בצק מגולגל על שיפוד, נאפה על גחלים, ומצופה סוכר/קינמון/שקדים. פופולרי בדוכני רחוב - ריח מדהים שמוביל אליו. מגיע גם ממולא גלידה.</div>
+    <div class="shop-where">📍 Krupówki + קרקוב</div>
+    <div class="shop-price">~3-4€</div>
+  </div>
+
+  <!-- קרקוב - לקנות -->
+  <div class="shop-section"><span class="shop-section-flag">🇵🇱</span><span class="shop-section-title">קרקוב – לקנות הביתה</span><div class="shop-section-line"></div></div>
+
+  <div class="shop-card">
+    <div class="shop-card-header"><div class="shop-emoji">🍫</div><div><div class="shop-name">E. Wedel – שוקולד פולני קלאסי</div><div class="shop-sub">המותג הפולני הכי אהוב</div></div></div>
+    <div class="shop-desc">שוקולד פולני מ-1851. המוצר האייקוני - "Ptasie Mleczko" (חלב ציפור) - קוביות שוקולד עם מילוי מרנג. מתנה מושלמת לבית.</div>
+    <div class="shop-where">📍 כל סופר בפולין + חנות Wedel בקרקוב</div>
+    <div class="shop-price">~3-5€ לקופסה</div>
+  </div>
+
+  <div class="shop-card">
+    <div class="shop-card-header"><div class="shop-emoji">🫙</div><div><div class="shop-name">פירוגי קפואים + ריבת שזיפים</div><div class="shop-sub">לקחת הביתה</div></div></div>
+    <div class="shop-desc">פירוגי קפואים בטעמים שונים - לבשל בבית. ריבת שזיפים פולנית (Powidła) - מעולה על לחם. שניהם נשמרים מצוין.</div>
+    <div class="shop-where">📍 Auchan / Lidl / Tesco</div>
+    <div class="shop-price">~3-4€ לשקית</div>
+  </div>
+
+  <div class="shop-card">
+    <div class="shop-card-header"><div class="shop-emoji">🍬</div><div><div class="shop-name">Krówki – ממתק חלב פולני</div><div class="shop-sub">קינוח ייחודי</div></div></div>
+    <div class="shop-desc">ממתק פולני קלאסי עשוי חלב מרוכז עם טעם קרמל. עוטפים בנייר לבן. מתנה קטנה ואיכותית לבית.</div>
+    <div class="shop-where">📍 כל סופר</div>
+    <div class="shop-price">~2€ לשקית</div>
+  </div>
+
+  <div class="shop-card">
+    <div class="shop-card-header"><div class="shop-emoji">🧂</div><div><div class="shop-name">מלח ממכרות Wieliczka</div><div class="shop-sub">מזכרת ייחודית</div></div></div>
+    <div class="shop-desc">מלח סלע ורוד מהמכרות. נמכר בחנות המזכרות בסיום הסיור. מגיע בצנצנות נחמדות ובמגוון גדלים. מתנה מיוחדת שאנשים אוהבים לקבל.</div>
+    <div class="shop-where">📍 חנות מזכרות בסיום הסיור במכרות</div>
+    <div class="shop-price">~5-10€</div>
+  </div>
+
+  <div style="text-align:center; padding:16px; font-size:11px; color:var(--sub);">
+    💡 כל המחירים משוערים • אוגוסט 2026
+  </div>
+</div>
+
+<!-- ===== RAIN PAGE ===== -->
+<div id="page-rain" class="page">
+  <div class="hero">
+    <div class="hero-flag">🌧️</div>
+    <h1>יום גשום – תוכנית גיבוי</h1>
+    <p>תוכנית מלאה לכל יום גשום בסלובקיה</p>
+    <div class="hero-tags">
+      <span class="tag">🧊 מערות</span>
+      <span class="tag">🌊 פארקי מים</span>
+      <span class="tag">🛍️ קניות</span>
+      <span class="tag">🎮 פנים</span>
+    </div>
+  </div>
+
+  <style>
+    .rain-note { background:rgba(78,168,222,0.08); border:1px solid rgba(78,168,222,0.2); border-radius:12px; margin:0 16px 16px; padding:12px 16px; font-size:12px; color:#9BB5C8; line-height:1.6; }
+  </style>
+
+  <div class="rain-note">
+    💡 יום גשום בטטרות הנמוכות? אל תדאגו - יש המון מה לעשות! התוכנית הזו מחליפה יום מלא באוויר הפתוח.
+  </div>
+
+  <div class="rain-note" style="display:flex;flex-direction:column;gap:8px;">
+    <div style="font-weight:600;color:#F0EDE8;">☀️ בדיקת מזג אוויר עכשיו</div>
+    <a href="http://www.chatademian.com" target="_blank" style="display:block;background:rgba(244,162,97,0.15);border:1px solid rgba(244,162,97,0.35);border-radius:10px;padding:10px;color:#F0EDE8;text-decoration:none;font-size:12px;">🌡️ תחנת מזג אוויר חיה – Chata Demian<br><span style="color:#8A9BAD;font-size:11px;">נתונים ישירות מהמרפסת של הבקתה – הכי מדויק לעמק!</span></a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <a href="https://www.accuweather.com/en/sk/liptovsky-mikulas/319470/weather-forecast/319470" target="_blank" style="flex:1;min-width:100px;text-align:center;background:rgba(78,168,222,0.15);border:1px solid rgba(78,168,222,0.3);border-radius:10px;padding:10px;color:#F0EDE8;text-decoration:none;font-size:12px;">🏔️ טטרה נמוכה<br>(דמנובסקה)</a>
+      <a href="https://www.accuweather.com/en/sk/tatranska-lomnica/319497/weather-forecast/319497" target="_blank" style="flex:1;min-width:100px;text-align:center;background:rgba(78,168,222,0.15);border:1px solid rgba(78,168,222,0.3);border-radius:10px;padding:10px;color:#F0EDE8;text-decoration:none;font-size:12px;">⛰️ טטרה גבוהה<br>(שטרבסקה/זדיאר)</a>
+      <a href="https://www.accuweather.com/en/pl/zakopane/7381/weather-forecast/7381" target="_blank" style="flex:1;min-width:100px;text-align:center;background:rgba(78,168,222,0.15);border:1px solid rgba(78,168,222,0.3);border-radius:10px;padding:10px;color:#F0EDE8;text-decoration:none;font-size:12px;">🇵🇱 זאקופנה</a>
+      <a href="https://www.accuweather.com/en/pl/krakow/274445/weather-forecast/274445" target="_blank" style="flex:1;min-width:100px;text-align:center;background:rgba(78,168,222,0.15);border:1px solid rgba(78,168,222,0.3);border-radius:10px;padding:10px;color:#F0EDE8;text-decoration:none;font-size:12px;">🏰 קרקוב</a>
+    </div>
+    <div style="font-size:11px;color:#8A9BAD;">תחזית הרים אמינה רק 5-7 ימים מראש – לבדוק כל בוקר</div>
+  </div>
+
+  <!-- בוקר -->
+  <div class="att-section"><span class="att-section-flag">🌅</span><span class="att-section-title">בוקר – מערות</span><div class="att-section-line"></div></div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🧊</div><div><div class="att-name">מערת הקרח דמנובסקה ⭐</div><div class="att-loc">📍 5 דקות מהבקתה • סיור 45 דקות</div></div></div>
+    <div class="att-desc">מערה עם קרח קבוע כל השנה - טמפרטורה 0-3°C. להביא סוודרים וג'קטים לכולם! אחת המערות היפות בסלובקיה עם נטיפי קרח מרהיבים. עלייה של 20 דקות ברגל מהחניה.</div>
+    <div class="att-actions"><a class="att-btn-book" href="https://www.ssj.sk/en/jaskyna/5-demanovska-ice-cave">🎟️ להזמנה</a><a class="att-btn-nav" href="https://waze.com/ul?q=Demanovska+Ice+Cave+Slovakia">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🕳️</div><div><div class="att-name">מערת החירות – Cave of Liberty</div><div class="att-loc">📍 5 דקות מהבקתה • סיור 60-100 דקות</div></div></div>
+    <div class="att-desc">המערה הגדולה יותר - 11 ק"מ ארוכה! אולמות ענקיים, נטיפים ועמודים. מסלול קלאסי 60 דקות או מסלול מורחב 100 דקות עם 913-1118 מדרגות.</div>
+    <div class="att-actions"><a class="att-btn-book" href="https://www.ssj.sk/en/jaskyna/4-demanovska-cave-of-liberty">🎟️ להזמנה</a><a class="att-btn-nav" href="https://waze.com/ul?q=Demanovska+Cave+Liberty+Slovakia">ניווט</a></div>
+  </div>
+
+  <!-- צהריים -->
+  <div class="att-section"><span class="att-section-flag">☀️</span><span class="att-section-title">צהריים – אוכל</span><div class="att-section-line"></div></div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🍖</div><div><div class="att-name">Koliba Bešeňovka</div><div class="att-loc">📍 25 דקות מהבקתה</div></div></div>
+    <div class="att-desc">מסעדה סלובקית אותנטית עם בשרים, מרקים ואווירה הררית חמה. מושלמת לחימום אחרי המערות.</div>
+    <div class="att-actions"><a class="att-btn-nav" href="https://waze.com/ul?q=Koliba+Besenova">ניווט</a></div>
+  </div>
+
+  <!-- אחר הצהריים -->
+  <div class="att-section"><span class="att-section-flag">🌊</span><span class="att-section-title">אחר הצהריים – בריכות מקוריות</span><div class="att-section-line"></div></div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🌊</div><div><div class="att-name">Tatralandia – גם בגשם! ⭐</div><div class="att-loc">📍 15 דקות מהבקתה • פתוח 10:00-20:00</div></div></div>
+    <div class="att-desc">יש בריכות פנימיות מחוממות! גשם בחוץ לא משנה כלום. ילדים בבריכות חמות = מושלם ליום קריר. להזמין ב-gopass.travel.</div>
+    <div class="att-actions"><a class="att-btn-book" href="https://www.gopass.travel/homepage/tatralandia">🎟️ להזמנה</a><a class="att-btn-nav" href="https://waze.com/ul?q=Aquapark+Tatralandia">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🌡️</div><div><div class="att-name">Bešeňová – מים תרמיים</div><div class="att-loc">📍 25 דקות מהבקתה • פתוח 10:00-20:00</div></div></div>
+    <div class="att-desc">מים מינרליים חמים בטמפרטורת 38°C - הכי נעים בדיוק ביום גשום וקריר! גשם בחוץ + מים חמים = חוויה מיוחדת.</div>
+    <div class="att-actions"><a class="att-btn-official" href="https://www.besenova.com/en">אתר רשמי</a><a class="att-btn-nav" href="https://waze.com/ul?q=Besenova+Aquapark">ניווט</a></div>
+  </div>
+
+  <!-- ערב -->
+  <div class="att-section"><span class="att-section-flag">🛍️</span><span class="att-section-title">אופציות נוספות</span><div class="att-section-line"></div></div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🛍️</div><div><div class="att-name">קניון Liptovský Mikuláš</div><div class="att-loc">📍 15 דקות מהבקתה</div></div></div>
+    <div class="att-desc">Tesco + קניות + פריסטייל. קנייה של מוצרי מקומיים, ממתקים סלובקיים, ציוד לטיול.</div>
+    <div class="att-actions"><a class="att-btn-nav" href="https://waze.com/ul?q=Liptovsky+Mikulas+center">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🍕</div><div><div class="att-name">Marino + Handy Dandy ⭐ <span class="att-badge att-badge-kids">ילדים</span></div><div class="att-loc">📍 15 דקות מהבקתה • Liptovský Mikuláš</div></div></div>
+    <div class="att-desc">מסעדה איטלקית מעולה עם משחקייה ענקית צמודה של 500 מ"ר! טרמפולינות, Xbox, קיר טיפוס, בריכת כדורים, אזור פעוטות ולוח אינטראקטיבי. ההורים אוכלים בשקט והילדים נהנים. מושלם לתינוקת ולכל הגילאים!</div>
+    <div class="att-actions"><a class="att-btn-nav" href="https://waze.com/ul?q=Marino+Restaurant+Liptovsky+Mikulas">ניווט</a></div>
+  </div>
+
+  <div class="att-card">
+    <div class="att-top"><div class="att-emoji">🎮</div><div><div class="att-name">Fun Center PARADOX</div><div class="att-loc">📍 15 דקות מהבקתה • Liptovský Mikuláš</div></div></div>
+    <div class="att-desc">מרכז בילוי פנימי לילדים - אטרקציות שונות, משחקים ופעילויות. מושלם ליום גשום.</div>
+    <div class="att-actions"><a class="att-btn-nav" href="https://waze.com/ul?q=Fun+Center+Paradox+Liptovsky+Mikulas">ניווט</a></div>
+  </div>
+
+  <div style="text-align:center; padding:16px; font-size:11px; color:var(--sub);">
+    🌧️ גשם = הזדמנות לחוויות שלא היית עושה אחרת!
+  </div>
+</div>
+
+<script>
+  function switchTab(tab) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-' + tab).classList.add('active');
+    event.currentTarget.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  // Add Google Maps buttons next to all Waze buttons
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('a.act-nav').forEach(function(wazeBtn) {
+      const wazeUrl = wazeBtn.href;
+      const query = wazeUrl.replace('https://waze.com/ul?q=', '').replace('https://waze.com/ul?ll=', '');
+      
+      let gmapUrl;
+      if (wazeUrl.includes('?ll=')) {
+        const coords = wazeUrl.match(/ll=([\d.]+),([\d.]+)/);
+        if (coords) gmapUrl = `https://maps.google.com/?q=${coords[1]},${coords[2]}`;
+      } else {
+        gmapUrl = `https://maps.google.com/?q=${query}`;
+      }
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'nav-btns';
+      wazeBtn.parentNode.insertBefore(wrapper, wazeBtn);
+      wazeBtn.textContent = '🗺️ וויז';
+      wrapper.appendChild(wazeBtn);
+
+      if (gmapUrl) {
+        const gmapBtn = document.createElement('a');
+        gmapBtn.href = gmapUrl;
+        gmapBtn.className = 'act-nav-gmap';
+        gmapBtn.textContent = '📍 גוגל';
+        gmapBtn.target = '_blank';
+        wrapper.appendChild(gmapBtn);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
