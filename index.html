@@ -1,552 +1,69 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>אטרקציות – סלובקיה ופולין 2026</title>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0WFMZ9CGPS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-0WFMZ9CGPS');
-</script>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800;900&display=swap');
+# ✅ צ'קליסט בדיקת איכות - אתר טיול
 
-  :root {
-    --bg: #0F1923;
-    --card: #1A2635;
-    --border: #2A3A4A;
-    --text: #F0EDE8;
-    --sub: #8A9BAD;
-    --accent: #F4A261;
-    --blue: #4EA8DE;
-    --green: #52B788;
-    --red: #C0392B;
-    --sk: #2D6A4F;
-    --pl: #C0392B;
-    --za: #E8572A;
-  }
+להריץ על כל קובץ index.html לפני מסירה, ואחרי כל עדכון משמעותי.
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+---
 
-  body {
-    font-family: 'Heebo', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    max-width: 480px;
-    margin: 0 auto;
-    padding-bottom: 40px;
-  }
+## 1. שלמות הקובץ (הכי חשוב!)
 
-  /* HEADER */
-  .hero {
-    background: linear-gradient(160deg, #1B3A5C 0%, #0F1923 100%);
-    padding: 28px 20px 24px;
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-  }
+- [ ] הורדתי את הגרסה **האחרונה בפועל** מ-GitHub לפני שהתחלתי לערוך (לא הנחתי שהיא מעודכנת)
+- [ ] בדקתי שכל התוספות מהשיחות הקודמות עדיין קיימות בקובץ (חיפוש מהיר של מילות מפתח מוכרות)
+- [ ] אין כפילויות תוכן (אותה מסעדה/פעילות מופיעה פעמיים)
 
-  .hero h1 { font-size: 22px; font-weight: 900; }
-  .hero p { font-size: 13px; color: var(--sub); margin-top: 5px; }
+---
 
-  .hero-tags {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 12px;
-    flex-wrap: wrap;
-  }
+## 2. תקינות טכנית
 
-  .tag {
-    background: rgba(244,162,97,0.15);
-    border: 1px solid rgba(244,162,97,0.3);
-    color: var(--accent);
-    font-size: 11px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 20px;
-  }
+- [ ] HTML תקין - אין תגיות פתוחות (בדיקת parser)
+- [ ] אין תווים משפה זרה שהוכנסו בטעות (לדוגמה ط ערבית במקום ט עברית)
+- [ ] כל הקישורים תקינים - אין `href=""` ריק, אין קישורים שבורים
+- [ ] כל כפתורי הניווט (וויז) מכוונים למקום הנכון
 
-  /* BACK BUTTON */
-  .back-btn {
-    display: block;
-    margin: 16px 16px 0;
-    padding: 10px 16px;
-    background: rgba(78,168,222,0.1);
-    border: 1px solid rgba(78,168,222,0.3);
-    border-radius: 10px;
-    color: var(--blue);
-    font-size: 13px;
-    font-weight: 600;
-    text-decoration: none;
-    text-align: center;
-  }
+---
 
-  /* SECTION HEADER */
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 20px 20px 10px;
-  }
+## 3. סדר כרונולוגי
 
-  .section-flag { font-size: 20px; }
+- [ ] בכל יום, השעות מסודרות נכון מהמוקדמת למאוחרת
+- [ ] אופציות חלופיות לאותה שעה (למשל שתי אטרקציות ביניהן בוחרים) - זה **תקין**, לא באג
+- [ ] אחרי כל הוספת פעילות חדשה - לבדוק שהיא לא שברה את הסדר של פעילויות סמוכות
 
-  .section-title {
-    font-size: 13px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--sub);
-  }
+---
 
-  .section-line { flex: 1; height: 1px; background: var(--border); }
+## 4. תוכן - לכל פעילות
 
-  /* ATTRACTION CARD */
-  .attraction-card {
-    margin: 0 16px 10px;
-    background: var(--card);
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    overflow: hidden;
-  }
+- [ ] זמן נסיעה מצוין מהנקודה הקודמת (לא רק "X דקות" בלי לציין מאיפה)
+- [ ] שעות פתיחה + שעת כניסה אחרונה
+- [ ] מחיר מדויק ממקור רשמי - **או** תיוג מפורש "הערכה - לא מאומת"
+- [ ] מגבלת גיל/גובה/משקל רלוונטית להרכב המשפחה בפועל
+- [ ] הערת נגישות לעגלה/מנשא אם יש תינוק בקבוצה
 
-  .card-top {
-    padding: 14px 16px 10px;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
+---
 
-  .card-emoji { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+## 5. מסעדות
 
-  .card-info { flex: 1; }
+- [ ] דירוג ומספר ביקורות מצוינים כשיש מקור אמיתי
+- [ ] אזהרה אם מקום נמצא ב"מלכודת תיירים" (מדרחוב מרכזי, ליד רכבל)
+- [ ] כתובת מדויקת, לא רק שם עיר
 
-  .card-name {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1.3;
-  }
+---
 
-  .card-location {
-    font-size: 11px;
-    color: var(--sub);
-    margin-top: 3px;
-  }
+## 6. יום גשום
 
-  .card-desc {
-    font-size: 12px;
-    color: #9BB5C8;
-    line-height: 1.5;
-    padding: 0 16px 14px;
-  }
+- [ ] יש תוכנית גיבוי מלאה, לא רק הערה כללית של "יש אופציות"
+- [ ] קישור למזג אוויר מקומי (תחנה של מקום הלינה אם קיימת) + כללי לכל אזור בטיול
 
-  .card-actions {
-    display: flex;
-    gap: 8px;
-    padding: 0 16px 14px;
-  }
+---
 
-  .btn-book {
-    flex: 1;
-    background: var(--accent);
-    color: #1A1A1A;
-    border: none;
-    border-radius: 20px;
-    padding: 9px 14px;
-    font-size: 13px;
-    font-family: 'Heebo', sans-serif;
-    font-weight: 700;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-  }
+## 7. ביקורת אובייקטיבית - לפני מסירה
 
-  .btn-book.gyg {
-    background: var(--accent);
-  }
+- [ ] יש יום עמוס מדי? (יותר מ-4-5 פעילויות משמעותיות)
+- [ ] יש זיג-זג גיאוגרפי מיותר (נסיעה הלוך ושוב לאותו כיוון)?
+- [ ] יש התנגשות זמנים בין שתי פעילויות?
+- [ ] יש איזון בין ימי אקשן לימי מנוחה, בהתחשב בגיל הילדים הכי קטן בקבוצה?
 
-  .btn-book.official {
-    background: var(--accent);
-    color: #1A1A1A;
-    border: none;
-  }
+---
 
-  .btn-nav {
-    background: rgba(78,168,222,0.15);
-    border: 1px solid rgba(78,168,222,0.3);
-    color: var(--blue);
-    border-radius: 20px;
-    padding: 9px 14px;
-    font-size: 13px;
-    font-family: 'Heebo', sans-serif;
-    font-weight: 600;
-    text-decoration: none;
-    text-align: center;
-    flex-shrink: 0;
-  }
+## 8. לפני שמסיימים
 
-  .badge {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 7px;
-    border-radius: 10px;
-    margin-right: 6px;
-    vertical-align: middle;
-  }
-
-  .badge-kids { background: rgba(82,183,136,0.2); color: var(--green); border: 1px solid rgba(82,183,136,0.3); }
-  .badge-popular { background: rgba(244,162,97,0.2); color: var(--accent); border: 1px solid rgba(244,162,97,0.3); }
-  .badge-israel { background: rgba(78,168,222,0.2); color: var(--blue); border: 1px solid rgba(78,168,222,0.3); }
-  .badge-free { background: rgba(82,183,136,0.15); color: var(--green); border: 1px solid rgba(82,183,136,0.3); }
-
-  .divider { height: 1px; background: var(--border); margin: 0 16px; }
-
-  footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 11px;
-    color: var(--sub);
-  }
-</style>
-</head>
-<body>
-
-<div class="hero">
-  <h1>🎯 אטרקציות מומלצות</h1>
-  <p>סלובקיה • זאקופנה • קרקוב</p>
-  <div class="hero-tags">
-    <span class="tag">🎢 פארקים</span>
-    <span class="tag">🏰 טירות</span>
-    <span class="tag">🥾 טבע</span>
-    <span class="tag">🕍 היסטוריה</span>
-  </div>
-</div>
-
-
-
-<!-- ===== סלובקיה ===== -->
-<div class="section-header">
-  <span class="section-flag">🇸🇰</span>
-  <span class="section-title">סלובקיה – Liptovský Mikuláš</span>
-  <div class="section-line"></div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🌊</div>
-    <div class="card-info">
-      <div class="card-name">Tatralandia <span class="badge badge-kids">ילדים</span></div>
-      <div class="card-location">📍 15 דקות מ-Chata Demian</div>
-    </div>
-  </div>
-  <div class="card-desc">פארק מים ענק עם בריכות חמות, מגלשות ענקיות ואזור ילדים מיוחד. פתוח כל השנה. אחד הפארקים הפופולריים ביותר בסלובקיה.</div>
-  <div class="card-actions">
-    <a class="btn-book gyg" href="https://www.gopass.travel/homepage/tatralandia">🎟️ להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=Aquapark+Tatralandia">ניווט</a>
-  </div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🌡️</div>
-    <div class="card-info">
-      <div class="card-name">Bešeňová Aquapark <span class="badge badge-kids">ילדים</span></div>
-      <div class="card-location">📍 40 דקות מ-Chata Demian</div>
-    </div>
-  </div>
-  <div class="card-desc">מרחצאות תרמיים עם מים מינרליים, מגלשות מים ואזור ספא. מים בטמפרטורה נעימה גם בימים קרירים. מושלם לאחר יום של טיולים בהרים.</div>
-  <div class="card-actions">
-    <a class="btn-book official" href="https://www.besenova.com/en">להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=Besenova+Aquapark">ניווט</a>
-  </div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🚡</div>
-    <div class="card-info">
-      <div class="card-name">Chopok – רכבל Jasná <span class="badge badge-popular">פופולרי</span></div>
-      <div class="card-location">📍 15 דקות מ-Chata Demian</div>
-    </div>
-  </div>
-  <div class="card-desc">רכבל לפסגת Chopok (2,024 מ'). נוף מדהים על הטטרה הנמוכה. בקיץ: טיולי הרים ואופניים. בחורף: אחד ממוקדי הסקי הגדולים בסלובקיה.</div>
-  <div class="card-actions">
-    <a class="btn-book official" href="https://www.jasna.sk/en">להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=Jasna+Nizke+Tatry">ניווט</a>
-  </div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🌲</div>
-    <div class="card-info">
-      <div class="card-name">Tarzania – פארק חבלים <span class="badge badge-kids">ילדים</span></div>
-      <div class="card-location">📍 צמוד לרכבל Jasná – Hotel SKI Záhradky</div>
-    </div>
-  </div>
-  <div class="card-desc">34 פלטפורמות ו-95 מכשולים בגובה 4-7 מטר. מסלול ילדים נפרד לקטנים. אפשר לשלב עם הרכבל באותו יום. פתוח 09:00-18:00 בקיץ.</div>
-  <div class="card-actions">
-    <a class="btn-book official" href="https://www.tarzania.sk">להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?ll=48.96852,19.57989&navigate=yes">ניווט</a>
-  </div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🏰</div>
-    <div class="card-info">
-      <div class="card-name">טירת אורבה <span class="badge badge-popular">פופולרי</span></div>
-      <div class="card-location">📍 שעה וחצי מ-Chata Demian</div>
-    </div>
-  </div>
-  <div class="card-desc">אחת הטירות היפות ביותר בסלובקיה, בנויה על סלע גיר מרשים. מוזיאון עם אוסף נשק, ריהוט היסטורי ותצפית מדהימה על עמק אורבה.</div>
-  <div class="card-actions">
-    <a class="btn-book official" href="https://www.oravskemuzeum.sk/en">להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=Orava+Castle">ניווט</a>
-  </div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🎿</div>
-    <div class="card-info">
-      <div class="card-name">מגלשת Demänovská <span class="badge badge-kids">ילדים</span></div>
-      <div class="card-location">📍 10 דקות מ-Chata Demian</div>
-    </div>
-  </div>
-  <div class="card-desc">מגלשת קיץ על מסילה - מגלשים בעגלת מתכת במורד ההר. אחד הבילויים הכי כיפיים לילדים באזור. מסלול של כ-1 ק"מ עם נוף מהמם.</div>
-  <div class="card-actions">
-    <a class="btn-book official" href="https://www.ziarce.sk">להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=Bobova+Draha+Demanovska">ניווט</a>
-  </div>
-</div>
-
-<!-- ===== זאקופנה ===== -->
-<div class="section-header">
-  <span class="section-flag">🇵🇱</span>
-  <span class="section-title">זאקופנה והסביבה</span>
-  <div class="section-line"></div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🌊</div>
-    <div class="card-info">
-      <div class="card-name">Chochołowskie Termy <span class="badge badge-popular">פופולרי</span><span class="badge badge-kids">ילדים</span></div>
-      <div class="card-location">📍 20 דקות מזאקופנה</div>
-    </div>
-  </div>
-  <div class="card-desc">הפארק התרמי הגדול ביותר בפולין - 30 בריכות עם מים עשירים בגופרית וביוד. מגלשות, ג'קוזי, סאונות ומערות מלח. נוף מדהים של הרי הטטרה. פתוח כל השנה.</div>
-  <div class="card-actions">
-    <a class="btn-book gyg" href="https://gyg.me/Nxj4vPTX">🎟️ להזמנה בלבד</a>
-    <a class="btn-book gyg" href="https://gyg.me/teyC6wPi">🚌 עם הסעה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=Chocholowskie+Termy">ניווט</a>
-  </div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🚡</div>
-    <div class="card-info">
-      <div class="card-name">Kasprowy Wierch – רכבל <span class="badge badge-popular">פופולרי</span></div>
-      <div class="card-location">📍 זאקופנה</div>
-    </div>
-  </div>
-  <div class="card-desc">הרכבל הידוע בפולין. עולים ל-1,987 מ' ועומדים על הגבול פולין-סלובקיה. נוף פנורמי עוצר נשימה. כדאי להזמין מראש - מאוד מבוקש בקיץ.</div>
-  <div class="card-actions">
-    <a class="btn-book gyg" href="https://gyg.me/JozVHFmn">🎟️ להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=Kasprowy+Wierch+cable+car">ניווט</a>
-  </div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🥾</div>
-    <div class="card-info">
-      <div class="card-name">Morskie Oko – אגם <span class="badge badge-popular">פופולרי</span></div>
-      <div class="card-location">📍 30 דקות מזאקופנה</div>
-    </div>
-  </div>
-  <div class="card-desc">האגם הגדול ביותר בטטרה - "עין הים". צבע תכלת עוצר נשימה. הגעה ברגל (9 ק"מ) או בעגלת סוסים. אחד המקומות הצילומיים ביותר בפולין.</div>
-  <div class="card-actions">
-    <a class="btn-book gyg" href="https://gyg.me/mzxWkzBs">🎟️ להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=Morskie+Oko+Zakopane">ניווט</a>
-  </div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🚣</div>
-    <div class="card-info">
-      <div class="card-name">Dunajec – רפטינג <span class="badge badge-kids">ילדים</span></div>
-      <div class="card-location">📍 45 דקות מזאקופנה</div>
-    </div>
-  </div>
-  <div class="card-desc">שייט מרהיב בסירות עץ מסורתיות בין צוקי הגבול פולין-סלובקיה. 2 שעות של נוף עוצר נשימה. מדריכים בתחפושות מסורתיות. מתאים מגיל 3.</div>
-  <div class="card-actions">
-    <a class="btn-book gyg" href="https://gyg.me/VrNZjV31">🎟️ להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=Dunajec+river+rafting+Sromowce">ניווט</a>
-  </div>
-</div>
-
-<!-- ===== זאטור ===== -->
-<div class="section-header">
-  <span class="section-flag">🇵🇱</span>
-  <span class="section-title">זאטור – פארקים</span>
-  <div class="section-line"></div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🎢</div>
-    <div class="card-info">
-      <div class="card-name">Energylandia <span class="badge badge-popular">פופולרי</span></div>
-      <div class="card-location">📍 50 דקות מקרקוב</div>
-    </div>
-  </div>
-  <div class="card-desc">הפארק הגדול ביותר בפולין עם 19 רכבות הרים! אזורים: Extreme Zone, Family Zone, Kids Zone ופארק מים. יום שלם של בילוי לכל הגילאים.</div>
-  <div class="card-actions">
-    <a class="btn-book gyg" href="https://gyg.me/4pxoi3k5">🎟️ להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=Energylandia">ניווט</a>
-  </div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🦕</div>
-    <div class="card-info">
-      <div class="card-name">Zatorland – דינוזאורים <span class="badge badge-kids">ילדים</span></div>
-      <div class="card-location">📍 3 ק"מ מ-Energylandia</div>
-    </div>
-  </div>
-  <div class="card-desc">100+ דינוזאורים אנימטרוניים בגודל טבעי - זזים, שואגים ומגיבים! פארק מיתולוגיה יוונית ולונה פארק. מושלם לילדים קטנים. אפשר לשלב עם Energylandia באותו יום.</div>
-  <div class="card-actions">
-    <a class="btn-book official" href="https://zatorland.pl">להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=Zatorland+Zator">ניווט</a>
-  </div>
-</div>
-
-<!-- ===== קרקוב ===== -->
-<div class="section-header">
-  <span class="section-flag">🇵🇱</span>
-  <span class="section-title">קרקוב – אטרקציות</span>
-  <div class="section-line"></div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🧂</div>
-    <div class="card-info">
-      <div class="card-name">מכרות המלח Wieliczka <span class="badge badge-popular">פופולרי</span></div>
-      <div class="card-location">📍 15 דקות מקרקוב</div>
-    </div>
-  </div>
-  <div class="card-desc">אתר UNESCO - קתדרלה תת-קרקעית מגולפת במלח ב-135 מטר עומק. 800 מדרגות ירידה, 2.5 שעות סיור. אחת החוויות הבלתי נשכחות בפולין. להזמין מראש!</div>
-  <div class="card-actions">
-    <a class="btn-book gyg" href="https://gyg.me/1unxDz73">🎟️ להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=Wieliczka+Salt+Mine">ניווט</a>
-  </div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">😢</div>
-    <div class="card-info">
-      <div class="card-name">אושוויץ-בירקנאו <span class="badge badge-israel">ישראלים</span></div>
-      <div class="card-location">📍 שעה וחצי מקרקוב</div>
-    </div>
-  </div>
-  <div class="card-desc">מחנה ההשמדה הגדול ביותר בהיסטוריה. ביקור חובה לכל ישראלי. מדריכים דוברי עברית. חוויה מטלטלת ובלתי נשכחת. להזמין מראש - מלא תמיד.</div>
-  <div class="card-actions">
-    <a class="btn-book gyg" href="https://gyg.me/hsb9vnpc">🎟️ להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=Auschwitz+Birkenau">ניווט</a>
-  </div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🏰</div>
-    <div class="card-info">
-      <div class="card-name">טירת Wawel <span class="badge badge-popular">פופולרי</span></div>
-      <div class="card-location">📍 לב קרקוב</div>
-    </div>
-  </div>
-  <div class="card-desc">ארמון המלכים הפולנים על גדות הוויסלה. קתדרלה מרשימה, אוצרות מלכותיים ותצפית על קרקוב. סמל העיר ואחת האטרקציות הפופולריות ביותר בפולין.</div>
-  <div class="card-actions">
-    <a class="btn-book gyg" href="https://gyg.me/NIHwjJwK">🎟️ להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=Wawel+Castle">ניווט</a>
-  </div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🕍</div>
-    <div class="card-info">
-      <div class="card-name">רובע Kazimierz <span class="badge badge-israel">ישראלים</span></div>
-      <div class="card-location">📍 ליד הדירה שלך</div>
-    </div>
-  </div>
-  <div class="card-desc">הרובע היהודי ההיסטורי של קרקוב - בתי כנסת עתיקים, מוזיאון היסטוריה יהודית, מסעדות ובתי קפה. צולם כאן "רשימת שינדלר" של ספילברג.</div>
-  <div class="card-actions">
-    <a class="btn-book gyg" href="https://gyg.me/V4Xt2OXs">🎟️ להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=Kazimierz+Krakow">ניווט</a>
-  </div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🏙️</div>
-    <div class="card-info">
-      <div class="card-name">העיר העתיקה – קרקוב <span class="badge badge-popular">פופולרי</span></div>
-      <div class="card-location">📍 מרכז קרקוב</div>
-    </div>
-  </div>
-  <div class="card-desc">כיכר השוק הגדולה באירופה, קתדרלת מריה ומגדל הפעמונים. שוק מסורתי, רוכלים ומוזיקאים. ליבה של קרקוב שלא כדאי לפספס.</div>
-  <div class="card-actions">
-    <a class="btn-book gyg" href="https://gyg.me/YTLtekWs">🎟️ להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=Krakow+Main+Market+Square">ניווט</a>
-  </div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🎮</div>
-    <div class="card-info">
-      <div class="card-name">GOjump + GOkidz <span class="badge badge-kids">ילדים</span></div>
-      <div class="card-location">📍 קניון Bonarka קרקוב</div>
-    </div>
-  </div>
-  <div class="card-desc">GOjump - פארק טרמפולינות ענק עם 50+ אטרקציות לכל הגילאים. לצדו GOkidz - 2,000 מ"ר של אטרקציות לילדים קטנים. שניהם במקום אחד!</div>
-  <div class="card-actions">
-    <a class="btn-book gyg" href="https://gyg.me/cLWKTA1b">🎟️ להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=GOjump+Krakow+Bonarka">ניווט</a>
-  </div>
-</div>
-
-<div class="attraction-card">
-  <div class="card-top">
-    <div class="card-emoji">🕹️</div>
-    <div class="card-info">
-      <div class="card-name">מוזיאון הארקייד <span class="badge badge-kids">ילדים</span></div>
-      <div class="card-location">📍 קרקוב</div>
-    </div>
-  </div>
-  <div class="card-desc">מאות משחקי ארקייד וינטג' מהשנות ה-70 עד ה-90 - פאק-מן, מורטל קומבט, פינבול ועוד. כרטיס אחד = שחקים ללא הגבלה. גן עדן לנוסטלגיה!</div>
-  <div class="card-actions">
-    <a class="btn-book official" href="http://www.krakowarcademuseum.com">להזמנה</a>
-    <a class="btn-nav" href="https://waze.com/ul?q=Krakow+Arcade+Museum">ניווט</a>
-  </div>
-</div>
-
-<footer>
-  🎟️ קישורי GetYourGuide כוללים עמלת שותפים • כל המחירים בכפוף לשינויים
-</footer>
-
-</body>
-</html>
+- [ ] מסרתי קובץ index.html מוכן להעלאה - לא רשימת הוראות
+- [ ] הזכרתי לבני להעלות את הגרסה הזו ל-GitHub לפני הבקשה הבאה
